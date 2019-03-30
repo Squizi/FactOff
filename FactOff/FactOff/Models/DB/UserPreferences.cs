@@ -1,5 +1,7 @@
-﻿namespace FactOff.Models {
-    public class UserPreferences {
+﻿namespace FactOff.Models.DB
+{
+    public class UserPreferences
+    {
         public int UserID { get; set; }
         public int ThemeID { get; set; }
     }

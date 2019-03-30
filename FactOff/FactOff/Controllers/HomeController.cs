@@ -12,8 +12,8 @@ namespace FactOff.Controllers {
             return View();
         }
 
-        public IActionResult About() {
-            ViewData["Message"] = "Your application description page.";
+        public IActionResult Facts(string search) {
+            ViewData["Message"] = "Your application page full of facts.";
 
             return View();
         }
