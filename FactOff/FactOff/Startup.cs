@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using FactOff.Models.DB;
+using FactOff.Services;
+using FactOff.Services.Contracts;
 
 namespace FactOff {
     public class Startup {
@@ -29,6 +31,10 @@ namespace FactOff {
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddScoped<IFactsService, FactsService>();
+            services.AddScoped<IThemesService, ThemesService>();
+            services.AddScoped<ITagsService, TagsService>();
+            services.AddScoped<IUsersService, UsersService>();
 
             var connection = @"Server=home.kutiika.net;Database=FactOff;Uid=factoff;Pwd=UrNG1pffHsoAZCnc6YMh;";
             services.AddDbContext<FactOffContext>
