@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using FactOff.Models;
-using FactOff.Models.DB2;
+using FactOff.Models.DB;
 
 namespace FactOff.Controllers
 {
