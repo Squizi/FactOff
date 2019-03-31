@@ -1,5 +1,3 @@
-using System;
-
 namespace FactOff.Models
 {
     public class ErrorViewModel
