@@ -333,4 +333,4 @@ ASALocalRun/
 .vscode
 *.vscode
 
-Connection.cs
+appsettings.json
