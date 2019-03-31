@@ -19,6 +19,8 @@ namespace FactOff.Services
                 Context = factContext,
                 Tags = tags
             };
+            context.Facts.Add(fact);
+            context.SaveChanges();
 
             return fact.FactId;
         }

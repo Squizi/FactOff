@@ -21,7 +21,7 @@ namespace FactOff.Controllers
         public IActionResult Create(string name)
         {
             service.CreateTag(name);
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
