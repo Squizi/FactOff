@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using FactOff.Models;
+using FactOff.Models.DB2;
 
 namespace FactOff.Controllers
 {
@@ -8,6 +9,7 @@ namespace FactOff.Controllers
     {
         public IActionResult Index()
         {
+            
             return View();
         }
 
