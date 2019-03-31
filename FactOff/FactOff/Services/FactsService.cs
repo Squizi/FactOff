@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FactOff.Services
 {
-    public class FactsService : IThemesService
+    public class FactsService : IFactsService
     {
         private FactOffContext context;
         public FactsService(FactOffContext context)
