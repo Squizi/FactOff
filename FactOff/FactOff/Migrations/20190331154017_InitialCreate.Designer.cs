@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FactOff.Migrations
 {
     [DbContext(typeof(FactOffContext))]
-    [Migration("20190331144455_InitialCreate")]
+    [Migration("20190331154017_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,8 +28,7 @@ namespace FactOff.Migrations
 
                     b.Property<string>("Context");
 
-                    b.Property<Guid?>("CreatorUserId")
-                        .IsRequired();
+                    b.Property<Guid?>("CreatorUserId");
 
                     b.Property<int>("RateCount");
 

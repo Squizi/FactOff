@@ -26,8 +26,7 @@ namespace FactOff.Migrations
 
                     b.Property<string>("Context");
 
-                    b.Property<Guid?>("CreatorUserId")
-                        .IsRequired();
+                    b.Property<Guid?>("CreatorUserId");
 
                     b.Property<int>("RateCount");
 

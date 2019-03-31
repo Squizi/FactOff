@@ -53,7 +53,7 @@ namespace FactOff.Migrations
                     Context = table.Column<string>(nullable: true),
                     Rating = table.Column<float>(nullable: false),
                     RateCount = table.Column<int>(nullable: false),
-                    CreatorUserId = table.Column<Guid>(nullable: false)
+                    CreatorUserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {

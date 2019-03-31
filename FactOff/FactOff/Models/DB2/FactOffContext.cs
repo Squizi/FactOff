@@ -20,8 +20,7 @@ namespace FactOff.Models.DB2
             modelBuilder.Entity<User>()
                 .HasMany(u => u.CreatedFacts)
                 .WithOne(f => f.Creator)
-                .OnDelete(DeleteBehavior.SetNull)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<UserFavoritesFacts>()
                 .HasKey(uff => new { uff.UserId, uff.FactId });
@@ -32,7 +31,7 @@ namespace FactOff.Models.DB2
             modelBuilder.Entity<UserFavoritesFacts>()
                 .HasOne(uff => uff.Fact)
                 .WithMany(f => f.Users)
-                .HasForeignKey(uff => uff.FactId); 
+                .HasForeignKey(uff => uff.FactId);
 
             modelBuilder.Entity<UserFavoriteThemes>()
                 .HasKey(uft => new { uft.UserId, uft.ThemeId });
