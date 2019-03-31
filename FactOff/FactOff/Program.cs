@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace FactOff {
-    public class Program {
-        public static void Main(string[] args) {
+namespace FactOff
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
             CreateWebHostBuilder(args).Build().Run();
         }
 
