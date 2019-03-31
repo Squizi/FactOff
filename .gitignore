@@ -332,3 +332,5 @@ ASALocalRun/
 #VS Code
 .vscode
 *.vscode
+
+Connection.cs
