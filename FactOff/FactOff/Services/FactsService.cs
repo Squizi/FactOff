@@ -1,13 +1,11 @@
-﻿using FactOff.Models.DB2;
+﻿using FactOff.Models.DB;
 using FactOff.Services.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FactOff.Services
 {
-    public class FactsService : IFactsService
+    public class FactsService : IThemesService
     {
         private FactOffContext context;
         public FactsService(FactOffContext context)

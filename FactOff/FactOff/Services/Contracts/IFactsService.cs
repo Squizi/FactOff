@@ -1,4 +1,4 @@
-﻿using FactOff.Models.DB2;
+﻿using FactOff.Models.DB;
 using System;
 using System.Collections.Generic;
 
