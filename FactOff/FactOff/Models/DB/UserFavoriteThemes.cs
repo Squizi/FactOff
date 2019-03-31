@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FactOff.Models.DB2
+namespace FactOff.Models.DB
 {
-    public class UserFavoritesFacts
+    public class UserFavoriteThemes
     {
         public Guid UserId { get; set; }
         public User User { get; set; }
-        public Guid FactId { get; set; }
-        public Fact Fact { get; set; }
+        public Guid ThemeId { get; set; }
+        public Theme Theme { get; set; }
     }
 }

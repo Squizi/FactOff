@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using FactOff.Models.DB2;
+using FactOff.Models.DB;
 
 namespace FactOff {
     public class Startup {

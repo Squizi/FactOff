@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FactOff.Models.DB2
+namespace FactOff.Models.DB
 {
     public class FactsTags
     {

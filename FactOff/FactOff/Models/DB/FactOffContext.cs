@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace FactOff.Models.DB2
+namespace FactOff.Models.DB
 {
     public class FactOffContext : DbContext
     {
