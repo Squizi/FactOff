@@ -2,8 +2,8 @@
 
 namespace FactOff.Services.Contracts
 {
-    interface IUsersService
+    public interface IUsersService
     {
-        Guid CreateUser(string name, string email);
+        Guid CreateUser(string email, string name, string password);
     }
 }

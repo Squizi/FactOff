@@ -12,6 +12,7 @@ namespace FactOff.Models.DB
         public Guid UserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
         public byte[] Image { get; set; }
 
         public ICollection<Fact> CreatedFacts { get; set; }

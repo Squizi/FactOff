@@ -12,14 +12,21 @@ namespace FactOff.Services
         {
             this.context = context;
         }
-        public Guid CreateUser(string name, string email)
+        public Guid CreateUser(string email, string name, string password)
         {
+            //TODO
+            //password = HashPassword(password);
             User user = new User() {
                 Name = name,
-                Email = email
+                Email = email,
+                Password = password
             };
 
             return user.UserId;
+        }
+
+        private string HashPassword(string password) {
+            throw new NotImplementedException();
         }
     }
 }

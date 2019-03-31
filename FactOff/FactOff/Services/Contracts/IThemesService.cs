@@ -2,7 +2,7 @@
 
 namespace FactOff.Services.Contracts
 {
-    interface IThemesService
+    public interface IThemesService
     {
         Guid CreateTheme(string name);
     }

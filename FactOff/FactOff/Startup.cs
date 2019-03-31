@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +9,8 @@ using FactOff.Models.DB;
 using FactOff.Services;
 using FactOff.Services.Contracts;
 
-namespace FactOff {
+namespace FactOff
+{
     public class Startup {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;

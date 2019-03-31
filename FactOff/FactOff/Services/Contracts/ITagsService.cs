@@ -2,7 +2,7 @@
 
 namespace FactOff.Services.Contracts
 {
-    interface ITagsService
+    public interface ITagsService
     {
         Guid CreateTag(string name);
     }

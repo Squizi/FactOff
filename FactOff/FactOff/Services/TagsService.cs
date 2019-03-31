@@ -19,6 +19,9 @@ namespace FactOff.Services
                 Name = name
             };
 
+            context.Tags.Add(tag);
+            context.SaveChanges();
+
             return tag.TagId;
         }
     }
