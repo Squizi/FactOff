@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FactOff.Models.DB;
 using FactOff.Services;
 using FactOff.Services.Contracts;
+using System;
 
 namespace FactOff
 {
@@ -26,6 +27,12 @@ namespace FactOff
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IFactsService, FactsService>();
@@ -63,6 +70,8 @@ namespace FactOff
                     await next();
                 }
             });
+
+            app.UseSession();
 
             app.UseMvc(routes => {
                 routes.MapRoute(
