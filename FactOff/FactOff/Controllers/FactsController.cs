@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FactOff.Models.DB;
+using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace FactOff.Controllers
         private IFactsTagsService factsTagsService;
         private IFactsService factsService;
         private ITagsService tagsService;
-
+        
         public FactsController(IFactsTagsService factsTagsService, IFactsService factsService, ITagsService tagsService)
         {
             this.factsTagsService = factsTagsService;
@@ -23,7 +24,8 @@ namespace FactOff.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = factsService.GetAllFacts();
+            return View(model);
         }
 
         public IActionResult Create() {

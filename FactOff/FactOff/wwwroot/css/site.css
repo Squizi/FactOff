@@ -43,3 +43,16 @@ body {
     border-radius: 25px;
 }
 
+.fact {
+    border: 1px solid grey;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.tags {
+    color: red;
+}
+
+.container {
+    margin-top: 20px;
+}

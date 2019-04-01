@@ -11,12 +11,6 @@ namespace FactOff.Models.DB
         public Guid TagId { get; set; }
         public Tag Tag { get; set; }
 
-        public FactsTags(Guid factId, Guid tagId)
-        {
-            FactId = factId;
-            TagId = tagId;
-        }
-
         public FactsTags()
         {
         }

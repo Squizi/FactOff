@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FactOff.Models.ViewModels
 {
-    public class FactsIndexViewModel
+    public class FactIndexViewModel
     {
-        public IEnumerable<FactIndexViewModel> Facts { get; set; }
+        public Fact Fact { get; set; }
+        public IEnumerable<Tag> Tags { get; set; }
     }
 }

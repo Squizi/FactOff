@@ -1,4 +1,5 @@
 ﻿using FactOff.Models.DB;
+using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,21 @@ namespace FactOff.Services
             context.SaveChanges();
 
             return fact.FactId;
+        }
+
+        public FactsIndexViewModel GetAllFacts()
+        {
+            Console.WriteLine(context.Facts);
+            var facts = context.Facts.Select(f => new FactIndexViewModel(){
+                Fact = f,
+                Tags = f.Tags.Select(t => t.Tag).ToList()
+            });
+
+            FactsIndexViewModel model = new FactsIndexViewModel() {
+                Facts = facts
+            };
+
+            return model;
         }
 
         public Fact GetFactById(Guid id)

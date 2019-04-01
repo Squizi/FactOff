@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using FactOff.Models.DB;
+using FactOff.Models.ViewModels;
 using FactOff.Services;
 using FactOff.Services.Contracts;
 using System;
