@@ -36,3 +36,10 @@ body {
     padding: 15px;
     margin: 0 auto;
 }
+
+.whitebox {
+    border: 5px solid black;
+    padding: 30px;
+    border-radius: 25px;
+}
+

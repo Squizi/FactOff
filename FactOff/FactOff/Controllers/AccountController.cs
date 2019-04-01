@@ -1,11 +1,20 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using FactOff.Models;
+using FactOff.Models.ViewModels;
+using FactOff.Services.Contracts;
 
 namespace FactOff.Controllers
 {
     public class AccountController : Controller
     {
+        private IUsersService service;
+
+        public AccountController(IUsersService service)
+        {
+            this.service = service;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -30,8 +39,26 @@ namespace FactOff.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult SignIn(string email, string password)
+        {
+            var userId = service.SignIn(email, password);
+            if (userId != null)
+            {
+                //TODO
+            }
+            return View();
+        }
+
         public IActionResult Registration()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Registration(RegisterViewModel requestModel)
+        {
+            service.CreateUser(requestModel.Email, requestModel.Name, requestModel.Password);
             return View();
         }
 
