@@ -6,6 +6,6 @@ namespace FactOff.Services.Contracts
 {
     public interface IFactsService
     {
-        Guid CreateFact(string context, ICollection<FactsTags> tags);
+        Guid CreateFact(string context);
     }
 }

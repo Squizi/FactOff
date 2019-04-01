@@ -10,11 +10,15 @@ namespace FactOff.Controllers
 {
     public class FactsController : Controller
     {
-        private IFactsService service;
+        private IFactsTagsService factsTagsService;
+        private IFactsService factsService;
+        private ITagsService tagsService;
 
-        public FactsController(IFactsService service)
+        public FactsController(IFactsTagsService factsTagsService, IFactsService factsService, ITagsService tagsService)
         {
-            this.service = service;
+            this.factsTagsService = factsTagsService;
+            this.factsService = factsService;
+            this.tagsService = tagsService;
         }
 
         public IActionResult Index()
@@ -27,8 +31,10 @@ namespace FactOff.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string factContext) {
-            service.CreateFact(factContext, null);
+        public IActionResult Create(string factContext, string tagsString) {
+            Guid factId = factsService.CreateFact(factContext);
+            List<Guid> tagsId = tagsService.CreateTags(tagsString);
+            factsTagsService.AddTagsToFact(factId, tagsId);
 
             return RedirectToAction("Index");
         }
