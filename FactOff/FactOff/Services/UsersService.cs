@@ -25,6 +25,17 @@ namespace FactOff.Services
             return user.UserId;
         }
 
+        public int DeleteUser(User user)
+        {
+            context.Users.Remove(user);
+            return context.SaveChanges();
+        }
+
+        public User GetUserById(Guid id)
+        {
+            return context.Users.Where(u => u.UserId == id).FirstOrDefault();
+        }
+
         public string SignIn(string email, string password)
         {
             //TODO
@@ -36,6 +47,34 @@ namespace FactOff.Services
             }
 
             return null;
+        }
+
+        public Guid UpdateEmail(User user, string newEmail)
+        {
+            context.Users.Where(u => u == user).FirstOrDefault().Email = newEmail;
+            context.SaveChanges();
+            return user.UserId;
+        }
+
+        public Guid UpdateImage(User user, byte[] newImage)
+        {
+            context.Users.Where(u => u == user).FirstOrDefault().Image = newImage;
+            context.SaveChanges();
+            return user.UserId;
+        }
+
+        public Guid UpdateName(User user, string newName)
+        {
+            context.Users.Where(u => u == user).FirstOrDefault().Name = newName;
+            context.SaveChanges();
+            return user.UserId;
+        }
+
+        public Guid UpdatePassword(User user, string newPassword)
+        {
+            context.Users.Where(u => u == user).FirstOrDefault().Password = newPassword;
+            context.SaveChanges();
+            return user.UserId;
         }
     }
 }
