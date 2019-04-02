@@ -8,7 +8,9 @@ namespace FactOff.Models.ViewModels
 {
     public class FactIndexViewModel
     {
-        public Fact Fact { get; set; }
-        public IEnumerable<Tag> Tags { get; set; }
+        public string Context { get; set; }
+        public string CreatorName { get; set; }
+        public float Rating { get; set; }
+        public IEnumerable<string> TagsNames { get; set; }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FactOff.Models.DB;
-using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +7,9 @@ namespace FactOff.Controllers
 {
     public class FactsController : Controller
     {
-        private IFactsTagsService factsTagsService;
-        private IFactsService factsService;
-        private ITagsService tagsService;
+        private readonly IFactsTagsService factsTagsService;
+        private readonly IFactsService factsService;
+        private readonly ITagsService tagsService;
         
         public FactsController(IFactsTagsService factsTagsService, IFactsService factsService, ITagsService tagsService)
         {

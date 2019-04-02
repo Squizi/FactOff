@@ -1,19 +1,15 @@
 ﻿@model FactOff.Models.ViewModels.FactsIndexViewModel;
 @{
-    var factModel = Model.Facts;
-    var facts = factModel.Select(f => f.Fact).ToList();
-}
-@{
     ViewData["Title"] = "Index";
 }
-<div class="container">
-    @foreach (var fact in facts)
+<div class="facts-container">
+    @foreach (var fact in Model.Facts)
     {
         <div class="fact">
-            <p>@fact.Context</p>
-            @foreach (var factTags in factModel.Where(f => f.Fact == fact).ToList())
+            <p class="fact-context">@fact.Context</p><p class="fact-creator">@fact.CreatorName</p>
+            @foreach (var factTags in Model.Facts.Select(t => t.TagsNames))
             {
-                <span class="tags">@string.Join(", ", factTags.Tags.Select(t => t.Name).ToList()) </span>
+                <span class="tags">@string.Join(", ", factTags) </span>
             }
         </div>
         <br />

@@ -8,7 +8,7 @@ namespace FactOff.Services
 {
     public class TagsService : ITagsService
     {
-        private FactOffContext context;
+        private readonly FactOffContext context;
 
         public TagsService(FactOffContext context)
         {
@@ -19,7 +19,7 @@ namespace FactOff.Services
         {
             Tag tag = new Tag()
             {
-                Name = name.First().ToString().ToUpper() + name.Substring(1)
+                Name = name.First().ToString().ToUpper() + name.Substring(1).ToLower()
             };
 
             context.Tags.Add(tag);
@@ -47,9 +47,22 @@ namespace FactOff.Services
             return tagsId;
         }
 
+        public int DeleteTag(Tag tag)
+        {
+            throw new NotImplementedException();
+        }
+
         public Tag GetTagById(Guid id)
         {
             return context.Tags.Where(t => t.TagId == id).FirstOrDefault();
+        }
+
+        public Guid UpdateTag(Tag tag, string newName)
+        {
+            context.Tags.Where(t => t == tag).FirstOrDefault().Name = newName;
+            context.SaveChanges();
+
+            return tag.TagId;
         }
     }
 }

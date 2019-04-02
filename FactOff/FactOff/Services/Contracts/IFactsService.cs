@@ -10,5 +10,9 @@ namespace FactOff.Services.Contracts
         Guid CreateFact(string context);
         FactsIndexViewModel GetAllFacts();
         Fact GetFactById(Guid id);
+        int DeleteFact(Fact fact);
+        Guid UpdateFact(Fact fact, string newContext);
+        void RemoveTag(Fact fact, Tag tag);
+        void AddTag(Fact fact, Tag tag);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FactOff.Models.DB;
+using System;
 using System.Collections.Generic;
 
 namespace FactOff.Services.Contracts
@@ -7,5 +8,8 @@ namespace FactOff.Services.Contracts
     {
         Guid CreateTag(string name);
         List<Guid> CreateTags(string tagsString);
+        int DeleteTag(Tag tag);
+        Guid UpdateTag(Tag tag, string name);
+        Tag GetTagById(Guid id);
     }
 }

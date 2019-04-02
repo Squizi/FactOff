@@ -8,7 +8,7 @@ namespace FactOff.Services
 {
     public class UsersService : IUsersService
     {
-        private FactOffContext context;
+        private readonly FactOffContext context;
 
         public UsersService(FactOffContext context)
         {
@@ -16,8 +16,6 @@ namespace FactOff.Services
         }
         public Guid CreateUser(string email, string name, string password)
         {
-            //TODO
-            //password = HashPassword(password);
             User user = new User() {
                 Name = name,
                 Email = email,
@@ -34,15 +32,10 @@ namespace FactOff.Services
             var user = context.Users.Where(u => u.Email == email && u.Password == password).SingleOrDefault();
             if(user != null)
             {
-                
                 return user.UserId.ToString();
             }
 
             return null;
-        }
-
-        private string HashPassword(string password) {
-            throw new NotImplementedException();
         }
     }
 }

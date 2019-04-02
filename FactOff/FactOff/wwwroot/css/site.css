@@ -43,6 +43,8 @@ body {
     border-radius: 25px;
 }
 
+/* Facts Page */
+
 .fact {
     border: 1px solid grey;
     border-radius: 15px;
@@ -53,6 +55,14 @@ body {
     color: red;
 }
 
-.container {
+.facts-container {
     margin-top: 20px;
+}
+
+.fact-creator {
+    float: right;
+}
+
+.fact-context{
+    float: left;
 }
