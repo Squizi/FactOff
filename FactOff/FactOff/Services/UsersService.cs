@@ -14,6 +14,7 @@ namespace FactOff.Services
         {
             this.context = context;
         }
+
         public Guid CreateUser(string email, string name, string password)
         {
             User user = new User() {
@@ -21,6 +22,9 @@ namespace FactOff.Services
                 Email = email,
                 Password = password
             };
+
+            context.Users.Add(user);
+            context.SaveChanges();
 
             return user.UserId;
         }
@@ -49,6 +53,12 @@ namespace FactOff.Services
             return null;
         }
 
+        public bool UserExists(string email)
+        {
+            return context.Users.Any(u => u.Email == email);
+        }
+
+        //Update User
         public Guid UpdateEmail(User user, string newEmail)
         {
             context.Users.Where(u => u == user).FirstOrDefault().Email = newEmail;

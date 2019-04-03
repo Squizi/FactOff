@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FactOff.Models;
 using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
+using Microsoft.AspNetCore.Http;
 
 namespace FactOff.Controllers
 {
@@ -36,18 +37,36 @@ namespace FactOff.Controllers
 
         public IActionResult SignIn()
         {
+            if (!string.IsNullOrWhiteSpace(HttpContext.Session.GetString("logeduser")))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
         [HttpPost]
-        public IActionResult SignIn(string email, string password)
+        public IActionResult SignIn(SignInViewModel requestModel)
         {
-            var userId = service.SignIn(email, password);
-            if (userId != null)
+            if (ModelState.IsValid)
             {
-                //TODO
+                var userId = service.SignIn(requestModel.Email, requestModel.Password);
+                if (userId != null)
+                {
+                    HttpContext.Session.SetString("logeduser", userId);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid email or password.");
+                }
             }
             return View();
+        }
+
+        public IActionResult SignOut(string email, string password)
+        {
+            HttpContext.Session.Remove("logeduser");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Registration()
@@ -58,7 +77,15 @@ namespace FactOff.Controllers
         [HttpPost]
         public IActionResult Registration(RegisterViewModel requestModel)
         {
-            service.CreateUser(requestModel.Email, requestModel.Name, requestModel.Password);
+            if (service.UserExists(requestModel.Email))
+            {
+                ModelState.AddModelError("", "There is already an account with this email.");
+            }
+            else
+            {
+                service.CreateUser(requestModel.Email, requestModel.Name, requestModel.Password);
+                return RedirectToAction("SignIn", "Account");
+            }
             return View();
         }
 

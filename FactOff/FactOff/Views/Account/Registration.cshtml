@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FactOff.Models.ViewModels.RegisterViewModel
+
+@{
 
     Layout = null;
 }
@@ -25,16 +27,17 @@
 
     <div class="container">
 
-        <form class="form-signin center-block whitebox">
+        <form class="form-signin center-block whitebox" method="post">
             <h2 class="form-signin-heading">Please create an account.</h2>
+            <div asp-validation-summary="All" class="text-danger"></div>
             <label for="email" class="sr-only">Email address</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
+            <input asp-for="Email" class="form-control" placeholder="Email address" required="" autofocus="">
             <label for="name" class="sr-only">Name</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Name" required="">
+            <input asp-for="Name" class="form-control" placeholder="Name" required="">
             <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+            <input asp-for="Password" class="form-control" placeholder="Password" required="">
             <br />
-            <button class="btn btn-lg btn-primary btn-block" type="submit" asp-area="" asp-controller="Account" asp-action="Profile">Sign up</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" asp-area="" asp-controller="Account" asp-action="Registration">Sign up</button>
         </form>
 
     </div>
