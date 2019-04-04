@@ -3,8 +3,9 @@
 @inject IUsersService userService
 @{
     ViewData["Title"] = "Profile page";
+    var userName = userService.GetUserById(new Guid(Context.Session.GetString("logeduser"))).Name;
 }
-@*{var userName = userService.GetUserById(new Guid(Context.Session.GetString("logeduser"))).Name;}*@
+
 
 
 <div class="facts-container">
@@ -13,7 +14,7 @@
             <img src="~/images/profile/imgDefault.jpg" />
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3">
-            <h1>@*userName*@Name</h1>
+            <h1>@userName</h1>
         </div>
     </div>
     <hr />

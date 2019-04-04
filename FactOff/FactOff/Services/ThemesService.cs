@@ -1,6 +1,7 @@
 ﻿using FactOff.Models.DB;
 using FactOff.Services.Contracts;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FactOff.Services
@@ -13,11 +14,16 @@ namespace FactOff.Services
             this.context = context;
         }
 
-        public Guid CreateTheme(string name)
+        public Guid CreateTheme(string name, byte[] image, string imageContentType)
         {
             Theme theme = new Theme() {
-                Name = name
+                Name = name,
+                Image = image,
+                ImageContentType = imageContentType
             };
+
+            context.Themes.Add(theme);
+            context.SaveChanges();
 
             return theme.ThemeId;
         }
@@ -31,6 +37,11 @@ namespace FactOff.Services
         public Theme GetThemeById(Guid id)
         {
             return context.Themes.Where(t => t.ThemeId == id).FirstOrDefault();
+        }
+
+        public IEnumerable<Theme> GetAll()
+        {
+            return context.Themes;
         }
 
         public Guid UpdateTheme(Theme theme, string name)

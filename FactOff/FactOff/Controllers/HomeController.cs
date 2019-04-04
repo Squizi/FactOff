@@ -2,15 +2,32 @@
 using Microsoft.AspNetCore.Mvc;
 using FactOff.Models;
 using FactOff.Models.DB;
+using FactOff.Models.ViewModels;
+using FactOff.Services.Contracts;
+using System.Linq;
 
 namespace FactOff.Controllers
 {
     public class HomeController : Controller
     {
+        private IThemesService serviceTheme;
+
+        public HomeController(IThemesService serviceTheme)
+        {
+            this.serviceTheme = serviceTheme;
+        }
+
         public IActionResult Index()
         {
-            
-            return View();
+            var model = new HomeViewModel
+            {
+                Themes = serviceTheme.GetAll().Select(t => new HomeThemeViewModel
+                {
+                    ThemeId = t.ThemeId,
+                    Name = t.Name
+                })
+            };
+            return View(model);
         }
 
         public IActionResult Facts(string search)

@@ -12,6 +12,7 @@ namespace FactOff.Models.DB
         public Guid ThemeId { get; set; }
         public string Name { get; set; }
         public byte[] Image { get; set; }
+        public string ImageContentType { get; set; }
 
         public ICollection<UserFavoriteThemes> Users { get; set; }
         public ICollection<Fact> Facts { get; set; }
