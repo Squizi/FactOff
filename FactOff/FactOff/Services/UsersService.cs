@@ -1,6 +1,5 @@
 ﻿using FactOff.Models.DB;
 using FactOff.Services.Contracts;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Linq;
 
@@ -17,7 +16,8 @@ namespace FactOff.Services
 
         public Guid CreateUser(string email, string name, string password)
         {
-            User user = new User() {
+            User user = new User()
+            {
                 Name = name,
                 Email = email,
                 Password = password
@@ -45,7 +45,7 @@ namespace FactOff.Services
             //TODO
             //password = HashPassword(password);
             var user = context.Users.Where(u => u.Email == email && u.Password == password).SingleOrDefault();
-            if(user != null)
+            if (user != null)
             {
                 return user.UserId.ToString();
             }
@@ -95,6 +95,6 @@ namespace FactOff.Services
             context.Users.Where(u => u == user).FirstOrDefault().Password = newPassword;
             context.SaveChanges();
             return user.UserId;
-        } 
+        }
     }
 }

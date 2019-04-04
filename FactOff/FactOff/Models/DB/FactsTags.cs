@@ -1,6 +1,4 @@
-﻿using FactOff.Services.Contracts;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace FactOff.Models.DB
 {

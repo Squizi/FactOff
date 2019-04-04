@@ -16,7 +16,8 @@ namespace FactOff.Services
 
         public Guid CreateTheme(string name, byte[] image, string imageContentType)
         {
-            Theme theme = new Theme() {
+            Theme theme = new Theme()
+            {
                 Name = name,
                 Image = image,
                 ImageContentType = imageContentType

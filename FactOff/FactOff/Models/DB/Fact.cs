@@ -8,7 +8,7 @@ namespace FactOff.Models.DB
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid FactId { get; set; }
-        public string Context { get; set; } 
+        public string Context { get; set; }
         public float Rating { get; set; }
         public int RateCount { get; set; }
 

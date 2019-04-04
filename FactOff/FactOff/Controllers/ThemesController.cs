@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +8,7 @@ namespace FactOff.Controllers
 {
     public class ThemesController : Controller
     {
-        private IThemesService service;
+        private readonly IThemesService service;
 
         public ThemesController(IThemesService service)
         {

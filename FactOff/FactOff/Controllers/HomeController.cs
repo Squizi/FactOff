@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using FactOff.Models;
-using FactOff.Models.DB;
 using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using System.Linq;
@@ -39,7 +38,7 @@ namespace FactOff.Controllers
             return View(model);
         }
 
-        public IActionResult Facts(string search)
+        public IActionResult Facts()
         {
             ViewData["Message"] = "Your application page full of facts.";
 
