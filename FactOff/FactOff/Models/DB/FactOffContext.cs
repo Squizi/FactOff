@@ -22,6 +22,12 @@ namespace FactOff.Models.DB
                 .WithOne(f => f.Creator)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Theme>()
+                .HasMany(t => t.Facts)
+                .WithOne(f => f.Theme)
+                .OnDelete(DeleteBehavior.SetNull);
+
             modelBuilder.Entity<UserFavoritesFacts>()
                 .HasKey(uff => new { uff.UserId, uff.FactId });
             modelBuilder.Entity<UserFavoritesFacts>()

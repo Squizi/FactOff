@@ -1,11 +1,23 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@using FactOff.Services.Contracts
+@inject IUsersService userService
+@{
     ViewData["Title"] = "Profile page";
 }
+@*{var userName = userService.GetUserById(new Guid(Context.Session.GetString("logeduser"))).Name;}*@
 
-<h1 class="centered">
-    Welcome to my profile!
-</h1>
 
-<img />
+<div class="facts-container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <img src="~/images/profile/imgDefault.jpg" />
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <h1>@*userName*@Name</h1>
+        </div>
+    </div>
+    <hr />
+</div>
 
-<h2></h2>
+
+

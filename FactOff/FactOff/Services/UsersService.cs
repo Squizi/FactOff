@@ -59,6 +59,16 @@ namespace FactOff.Services
         }
 
         //Update User
+        /*public Guid UpdateUser(User user, string newEmail, byte[] newImage, string newName, string newPassword)
+        {
+            context.Users.Where(u => u == user).FirstOrDefault().Email = newEmail;
+            context.Users.Where(u => u == user).FirstOrDefault().Image = newImage;
+            context.Users.Where(u => u == user).FirstOrDefault().Name = newName;
+            context.Users.Where(u => u == user).FirstOrDefault().Password = newPassword;
+            context.SaveChanges();
+            return user.UserId;
+        }*/
+
         public Guid UpdateEmail(User user, string newEmail)
         {
             context.Users.Where(u => u == user).FirstOrDefault().Email = newEmail;
@@ -85,6 +95,6 @@ namespace FactOff.Services
             context.Users.Where(u => u == user).FirstOrDefault().Password = newPassword;
             context.SaveChanges();
             return user.UserId;
-        }
+        } 
     }
 }

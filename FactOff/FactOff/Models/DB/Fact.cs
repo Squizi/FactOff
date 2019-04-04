@@ -13,6 +13,7 @@ namespace FactOff.Models.DB
         public int RateCount { get; set; }
 
         public User Creator { get; set; }
+        public Theme Theme { get; set; }
 
         public ICollection<UserFavoritesFacts> Users { get; set; }
         public ICollection<FactsTags> Tags { get; set; }

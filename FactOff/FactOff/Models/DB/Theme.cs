@@ -14,6 +14,7 @@ namespace FactOff.Models.DB
         public byte[] Image { get; set; }
 
         public ICollection<UserFavoriteThemes> Users { get; set; }
+        public ICollection<Fact> Facts { get; set; }
 
         public Theme()
         {
