@@ -2,6 +2,7 @@
 using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FactOff.Services
@@ -60,6 +61,11 @@ namespace FactOff.Services
         public Fact GetFactById(Guid id)
         {
             return context.Facts.Where(f => f.FactId == id).FirstOrDefault();
+        }
+
+        public IEnumerable<Fact> GetRandomTen()
+        {
+            return context.Facts.Take(10);
         }
 
         public void RemoveTag(Fact fact, Tag tag)

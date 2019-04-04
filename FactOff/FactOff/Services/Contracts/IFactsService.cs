@@ -9,6 +9,7 @@ namespace FactOff.Services.Contracts
         Guid CreateFact(string context);
         FactsIndexViewModel GetAllFacts();
         Fact GetFactById(Guid id);
+        IEnumerable<Fact> GetRandomTen();
         int DeleteFact(Fact fact);
         Guid UpdateFact(Fact fact, string newContext);
         void RemoveTag(Fact fact, Tag tag);
