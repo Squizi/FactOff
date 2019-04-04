@@ -9,7 +9,7 @@ namespace FactOff.Controllers
 {
     public class AccountController : Controller
     {
-        private IUsersService service;
+        private readonly IUsersService service;
 
         public AccountController(IUsersService service)
         {
@@ -63,7 +63,7 @@ namespace FactOff.Controllers
             return View();
         }
 
-        public IActionResult SignOut(string email, string password)
+        public IActionResult SignOut()
         {
             HttpContext.Session.Remove("logeduser");
             return RedirectToAction("Index", "Home");

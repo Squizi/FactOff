@@ -5,7 +5,7 @@ namespace FactOff.Controllers
 {
     public class TagsController : Controller
     {
-        private ITagsService service;
+        private readonly ITagsService service;
 
         public TagsController(ITagsService service)
         {
