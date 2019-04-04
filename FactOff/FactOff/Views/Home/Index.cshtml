@@ -13,10 +13,10 @@
 
 
 <div class="row">
-    <div class="col-xs-6 col-sm-4 col-md-3">
+    <div class="col-xs-6 col-sm-4 col-md-3 devide-container">
         @foreach (var theme in Model.Themes)
         {
-            <div class="thumbnail">
+            <div class="thumbnail ne">
                 <a href="">
                     <img src="@Url.Action("GetThemeImage", "Themes", new {themeId = theme.ThemeId})" alt="Art theme">
                     <div class="caption">
@@ -28,20 +28,18 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <p>...</p>
+@foreach (var fact in Model.Facts)
+{
+    <div class="container">
+        <div class="row">
+            <div>
+                <img />
+                @*rating*@
+            </div>
+            <div>
+                <p>@fact.Context</p>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <p>...</p>
-    </div>
-    <div class="row">
-        <p>...</p>
-    </div>
-    <div class="row">
-        <p>...</p>
-    </div>
-    <div class="row">
-        <p>...</p>
-    </div>
-</div>
+}
+

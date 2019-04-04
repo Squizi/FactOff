@@ -66,3 +66,11 @@ body {
 .fact-context{
     float: left;
 }
+
+.devide-container{
+    display: flex;
+}
+
+.ne{
+    display: inline-block;
+}

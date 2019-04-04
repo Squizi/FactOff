@@ -11,10 +11,12 @@ namespace FactOff.Controllers
     public class HomeController : Controller
     {
         private IThemesService serviceTheme;
+        private IFactsService serviceFacts;
 
-        public HomeController(IThemesService serviceTheme)
+        public HomeController(IThemesService serviceTheme, IFactsService serviceFacts)
         {
             this.serviceTheme = serviceTheme;
+            this.serviceFacts = serviceFacts;
         }
 
         public IActionResult Index()
@@ -25,6 +27,13 @@ namespace FactOff.Controllers
                 {
                     ThemeId = t.ThemeId,
                     Name = t.Name
+                }),
+                Facts = serviceFacts.GetRandomTen().Select(t => new HomeFactViewModel
+                {
+                    FactId = t.FactId,
+                    Context = t.Context,
+                    Rating = t.Rating,
+                    Creator = t.Creator
                 })
             };
             return View(model);
