@@ -7,8 +7,17 @@ namespace FactOff.Controllers
 {
     public class FactsController : Controller
     {
+        /// <summary>
+        /// The service allows the many-to-many connection between the facts and the tags.
+        /// </summary>
         private readonly IFactsTagsService factsTagsService;
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly IFactsService factsService;
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly ITagsService tagsService;
 
         public FactsController(IFactsTagsService factsTagsService, IFactsService factsService, ITagsService tagsService)
