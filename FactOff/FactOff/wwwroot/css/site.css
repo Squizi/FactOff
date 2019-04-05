@@ -48,7 +48,7 @@ body {
 .fact {
     border: 1px solid grey;
     border-radius: 15px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .fact-padding {
@@ -62,6 +62,19 @@ body {
     padding: 3px;
     color: grey;
     margin-right: 5px;
+}
+
+.btn-save {
+    border-color: red;
+    border-radius: 20px;
+    float: right;
+    color: red;
+    background-color: transparent;
+}
+
+.btn-save:hover {
+    background-color: red;
+    color: white;
 }
 
 .facts-container {

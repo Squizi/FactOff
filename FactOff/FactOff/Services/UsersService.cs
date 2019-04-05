@@ -73,5 +73,12 @@ namespace FactOff.Services
             return user.UserId;
         }
 
+        public int SaveFactToUser(User user, Fact fact)
+        {
+            if(!user.FavoriteFacts.Contains(new UserFavoritesFacts(){ UserId = user.UserId, FactId = fact.FactId })) { 
+                user.FavoriteFacts.Add(new UserFavoritesFacts(){ UserId = user.UserId, FactId = fact.FactId });
+            }
+            return context.SaveChanges();
+        }
     }
 }

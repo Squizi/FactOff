@@ -11,5 +11,6 @@ namespace FactOff.Services.Contracts
         Guid EditUser(Guid userId, string newEmail, byte[] newImage, string newImageContentType, string newName, string newPassword);
         int DeleteUser(User user);
         User GetUserById(Guid id);
+        int SaveFactToUser(User user, Fact fact);
     }
 }

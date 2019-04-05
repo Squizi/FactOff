@@ -1,5 +1,7 @@
-﻿@model FactOff.Models.ViewModels.FactsIndexViewModel
+﻿@using Microsoft.AspNetCore.Http
+@model FactOff.Models.ViewModels.FactsIndexViewModel
 @{
+    string loggedUserId = Context.Session.GetString("logeduser");
     ViewData["Title"] = "Index";
 }
 <div class="facts-container">
@@ -10,6 +12,10 @@
             @foreach (var tagName in fact.TagsNames)
             {
                 <span class="tags">@string.Join(", ", tagName) </span>
+            }
+            @if (loggedUserId != null)
+            {
+                <input type="submit" value="Save" class="btn-save" />
             }
         </div>
         <br />

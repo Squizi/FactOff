@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FactOff.Models.DB;
 using FactOff.Services.Contracts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FactOff.Controllers
 {
     public class FactsController : Controller
     {
-        /// <summary>
-        /// The service allows the many-to-many connection between the facts and the tags.
-        /// </summary>
         /// <summary>
         /// 
         /// </summary>
@@ -19,6 +18,7 @@ namespace FactOff.Controllers
         /// 
         /// </summary>
         private readonly ITagsService tagsService;
+        private readonly IUsersService usersService;
 
         public FactsController(IFactsService factsService, ITagsService tagsService)
         {
@@ -28,6 +28,14 @@ namespace FactOff.Controllers
 
         public IActionResult Index()
         {
+            var model = factsService.GetAllFacts();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Index(Fact factToSave) {
+            Guid userId = new Guid(HttpContext.Session.GetString("logeduser"));
+            usersService.SaveFactToUser(usersService.GetUserById(userId), factToSave);
             var model = factsService.GetAllFacts();
             return View(model);
         }
