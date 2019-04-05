@@ -13,7 +13,7 @@
             {
                 <span class="tags">@string.Join(", ", tagName) </span>
             }
-            @if (loggedUserId != null)
+            @if (loggedUserId != null && loggedUserId.ToUpper() != fact.CreatorId.ToUpper())
             {
                 <input type="submit" value="Save" class="btn-save" />
             }

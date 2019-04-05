@@ -89,11 +89,12 @@ namespace FactOff.Services
         /// }
         /// </code>
         /// </example>
-        public Guid CreateFact(string factContext)
+        public Guid CreateFact(string factContext, User creator)
         {
             Fact fact = new Fact()
             {
-                Context = factContext
+                Context = factContext,
+                Creator = creator
             };
             context.Facts.Add(fact);
             context.SaveChanges();
@@ -154,6 +155,7 @@ namespace FactOff.Services
             {
                 Context = f.Context,
                 CreatorName = f.Creator.Name,
+                CreatorId = f.Creator.UserId.ToString(),
                 Rating = f.Rating,
                 TagsNames = f.Tags.Select(t => t.Tag.Name)
             });

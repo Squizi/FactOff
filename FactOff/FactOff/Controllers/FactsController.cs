@@ -22,10 +22,11 @@ namespace FactOff.Controllers
         private readonly ITagsService tagsService;
         private readonly IUsersService usersService;
 
-        public FactsController(IFactsService factsService, ITagsService tagsService)
+        public FactsController(IFactsService factsService, ITagsService tagsService, IUsersService usersService)
         {
             this.factsService = factsService;
             this.tagsService = tagsService;
+            this.usersService = usersService;
         }
 
         public IActionResult Index()
@@ -50,7 +51,8 @@ namespace FactOff.Controllers
         [HttpPost]
         public IActionResult Create(string factContext, string tagsString)
         {
-            Guid factId = factsService.CreateFact(factContext);
+            User user = usersService.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
+            Guid factId = factsService.CreateFact(factContext, user);
             IEnumerable<Guid> tagsId = tagsService.CreateTags(tagsString);
             foreach (Guid tagId in tagsId)
             {
