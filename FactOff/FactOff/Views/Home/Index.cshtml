@@ -39,7 +39,13 @@
 <div class="facts-container">
     <div class="row fact-padding">
         <div>
-            <p class="fact-creator">@fact.Creator.Name</p>
+            @if (fact.Creator == null)
+            {
+                <p class="fact-creator"> </p>
+            }
+            @if(fact.Creator != null) { 
+                <p class="fact-creator">@fact.Creator.Name</p>
+            }
             @*rating*@
         </div>
         <div>

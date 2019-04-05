@@ -9,24 +9,24 @@ using System.Linq;
 namespace FactOff.Services
 {
     /// <summary>
-    /// The FactsService class that inherits from IFactsService.
+    /// The <c>FactsService class</c> that inherits from <c>IFactsService interface</c>.
     /// Contains all the CRUD operations to manipulate the facts in the database.
     /// <list type="bullet">
     /// <item>
     /// <term>Create</term>
-    /// <description>CreateFact function creates a new fact by giving the context of the fact.</description>
+    /// <description><c>CreateFact</c> function creates a new fact by giving the context of the fact.</description>
     /// </item>
     /// <item>
     /// <term>Read</term>
-    /// <description>GetFactById, GetAllFacts & GetRandomTen are all read methods that get the specified amount of facts.</description>
+    /// <description><c>GetFactById</c>, <c>GetAllFacts</c> & <c>GetRandomTen</c> are all read methods that get the specified amount of facts.</description>
     /// </item>
     /// <item>
     /// <term>Update</term>
-    /// <description>UpdateFact, AddTag & RemoveTag edit a specific fact.</description>
+    /// <description><c>UpdateFact</c>, <c>AddTag</c> & <c>RemoveTag</c> edit a specific fact.</description>
     /// </item>
     /// <item>
     /// <term>Delete</term>
-    /// <description>DeleteFact function removes a specific fact from the database.</description>
+    /// <description><c>DeleteFact</c> function removes a specific fact from the database.</description>
     /// </item>
     /// </list>
     /// </summary>

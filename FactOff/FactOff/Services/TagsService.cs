@@ -6,6 +6,28 @@ using System.Linq;
 
 namespace FactOff.Services
 {
+    /// <summary>
+    /// The <c>TagsService class</c> that inherits from <c>ITagsService interface</c>.
+    /// Contains all the CRUD operations to manipulate the tags in the database.
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Create</term>
+    /// <description>CreateTag & CreateTags both create tags by giving tha name of the tag.</description>
+    /// </item>
+    /// <item>
+    /// <term>Read</term>
+    /// <description>GetTagById returns a specific tag by a given id.</description>
+    /// </item>
+    /// <item>
+    /// <term>Update</term>
+    /// <description>UpdateTag edit the name of a specific tag.</description>
+    /// </item>
+    /// <item>
+    /// <term>Delete</term>
+    /// <description>DeleteTag removes a tag from the database.</description>
+    /// </item>
+    /// </list>
+    /// </summary>
     public class TagsService : ITagsService
     {
         private readonly FactOffContext context;

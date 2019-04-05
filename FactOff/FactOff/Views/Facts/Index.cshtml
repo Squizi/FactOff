@@ -7,9 +7,9 @@
     {
         <div class="fact">
             <p class="fact-context">@fact.Context</p><p class="fact-creator">@fact.CreatorName</p>
-            @foreach (var factTags in Model.Facts.Select(t => t.TagsNames))
+            @foreach (var tagName in fact.TagsNames)
             {
-                <span class="tags">@string.Join(", ", factTags) </span>
+                <span class="tags">@string.Join(", ", tagName) </span>
             }
         </div>
         <br />
