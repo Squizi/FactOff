@@ -26,7 +26,6 @@ namespace Tests
             optionsBuilder.UseInMemoryDatabase();
 #pragma warning restore CS0618 // Type or member is obsolete
             var mockContext = new FactOffContext(optionsBuilder.Options);
-            //mockContext.Setup(f => f.Facts).Returns(mockSet.Object);
             var factsService = new FactsService(mockContext);
         }
     }
