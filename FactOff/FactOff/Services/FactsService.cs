@@ -71,7 +71,6 @@ namespace FactOff.Services
         /// </example>
         public void AddTag(Fact fact, Tag tag)
         {
-
             fact.Tags.Add(new FactsTags() { FactId = fact.FactId, TagId = tag.TagId });
             context.SaveChanges();
         }
