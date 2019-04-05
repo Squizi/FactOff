@@ -12,6 +12,7 @@ namespace FactOff.Models.DB
         public string Email { get; set; }
         public string Password { get; set; }
         public byte[] Image { get; set; }
+        public string ImageContentType { get; set; }
 
         public ICollection<Fact> CreatedFacts { get; set; }
         public ICollection<UserFavoritesFacts> FavoriteFacts { get; set; }

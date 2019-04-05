@@ -4,6 +4,8 @@ using FactOff.Models;
 using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using Microsoft.AspNetCore.Http;
+using System;
+using System.IO;
 
 namespace FactOff.Controllers
 {
@@ -43,6 +45,42 @@ namespace FactOff.Controllers
             ViewData["Message"] = "Your application description page.";
 
             return View();
+        }
+
+        public IActionResult EditProfile()
+        {
+            var user = service.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
+            var model = new AccountViewModel
+            {
+                Name = user.Name,
+                Email = user.Email
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditProfile(AccountViewModel request)
+        {
+            if (ModelState.IsValid)
+            {
+                byte[] image;
+                using (var ms = new MemoryStream())
+                {
+                    request.ImageUploaded.CopyTo(ms);
+                    image = ms.ToArray();
+                }
+                service.EditUser(new Guid(HttpContext.Session.GetString("logeduser")), request.Email, image, request.ImageUploaded.ContentType, request.Name, request.Password);
+                return RedirectToAction(nameof(Index));
+            }
+            request.Password = null;
+            return View(request);
+        }
+
+        public FileStreamResult GetUserImage()
+        {
+            var user = service.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
+            Stream stream = new MemoryStream(user.Image);
+            return new FileStreamResult(stream, user.ImageContentType);
         }
 
         /// <summary>

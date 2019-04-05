@@ -40,7 +40,7 @@ namespace FactOff.Controllers
         public IActionResult Create(string factContext, string tagsString)
         {
             Guid factId = factsService.CreateFact(factContext);
-            List<Guid> tagsId = tagsService.CreateTags(tagsString);
+            IEnumerable<Guid> tagsId = tagsService.CreateTags(tagsString);
             foreach (Guid tagId in tagsId)
             {
                 factsService.AddTag(factsService.GetFactById(factId), tagsService.GetTagById(tagId));

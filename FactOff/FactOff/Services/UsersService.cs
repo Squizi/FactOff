@@ -58,43 +58,20 @@ namespace FactOff.Services
             return context.Users.Any(u => u.Email == email);
         }
 
-        //Update User
-        /*public Guid UpdateUser(User user, string newEmail, byte[] newImage, string newName, string newPassword)
+        public Guid EditUser(Guid userId, string newEmail, byte[] newImage, string newImageContentType,string newName, string newPassword)
         {
-            context.Users.Where(u => u == user).FirstOrDefault().Email = newEmail;
-            context.Users.Where(u => u == user).FirstOrDefault().Image = newImage;
-            context.Users.Where(u => u == user).FirstOrDefault().Name = newName;
-            context.Users.Where(u => u == user).FirstOrDefault().Password = newPassword;
-            context.SaveChanges();
-            return user.UserId;
-        }*/
-
-        public Guid UpdateEmail(User user, string newEmail)
-        {
-            context.Users.Where(u => u == user).FirstOrDefault().Email = newEmail;
+            var user = GetUserById(userId);
+            user.Email = newEmail;
+            user.Image = newImage;
+            user.ImageContentType = newImageContentType;
+            user.Name = newName;
+            if (!string.IsNullOrWhiteSpace(newPassword))
+            {
+                user.Password = newPassword;
+            }
             context.SaveChanges();
             return user.UserId;
         }
 
-        public Guid UpdateImage(User user, byte[] newImage)
-        {
-            context.Users.Where(u => u == user).FirstOrDefault().Image = newImage;
-            context.SaveChanges();
-            return user.UserId;
-        }
-
-        public Guid UpdateName(User user, string newName)
-        {
-            context.Users.Where(u => u == user).FirstOrDefault().Name = newName;
-            context.SaveChanges();
-            return user.UserId;
-        }
-
-        public Guid UpdatePassword(User user, string newPassword)
-        {
-            context.Users.Where(u => u == user).FirstOrDefault().Password = newPassword;
-            context.SaveChanges();
-            return user.UserId;
-        }
     }
 }

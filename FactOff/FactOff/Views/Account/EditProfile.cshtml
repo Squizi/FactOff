@@ -1,0 +1,45 @@
+﻿@model FactOff.Models.ViewModels.AccountViewModel
+
+<h4>AccountViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUploaded" class="control-label"></label>
+                <br />
+                @if (!string.IsNullOrWhiteSpace(Model.ImageContentType))
+                {
+                    <img src="@Url.Action("GetUserImage", "Account")" width="225" height="225" />
+                }
+                else
+                {
+                    <img src="~/images/profile/imgDefault.jpg" width="225" height="225" />
+                }
+                <input asp-for="ImageUploaded" class="form-control" />
+                <span asp-validation-for="ImageUploaded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
