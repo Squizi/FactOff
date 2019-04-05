@@ -27,12 +27,17 @@ namespace FactOff.Controllers
                     ThemeId = t.ThemeId,
                     Name = t.Name
                 }),
-                Facts = serviceFacts.GetRandomTen().Select(t => new HomeFactViewModel
+                Facts = serviceFacts.GetRandomTen().Select(f => new HomeFactViewModel
                 {
-                    FactId = t.FactId,
-                    Context = t.Context,
-                    Rating = t.Rating,
-                    Creator = t.Creator
+                    FactId = f.FactId,
+                    Context = f.Context,
+                    Rating = f.Rating,
+                    Creator = f.Creator,
+                    Tags = f.Tags.Select(t => new HomeTagViewModel
+                    {
+                        TagId = t.TagId,
+                        Name = t.Tag.Name
+                    })
                 })
             };
             return View(model);

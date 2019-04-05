@@ -12,5 +12,6 @@ namespace FactOff.Models.ViewModels
         public string Context { get; set; }
         public float Rating { get; set; }
         public User Creator { get; set; }
+        public IEnumerable<HomeTagViewModel> Tags { get; set; }
     }
 }
