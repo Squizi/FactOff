@@ -1,12 +1,12 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using FactOff.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
 using FactOff.Attributes;
+using FactOff.Models.DB;
+using System.Collections.Generic;
 
 namespace FactOff.Controllers
 {
@@ -16,16 +16,18 @@ namespace FactOff.Controllers
         /// The service lets the AccountController communicate with the UsersService
         /// which communicates with the database.
         /// </summary>
-        private readonly IUsersService service;
+        private readonly IUsersService userService;
+        private readonly IFactsService factsService;
 
         /// <summary>
         /// Initializes a new instance of the AccountController class.
         /// It's being called by the StartUp class.
         /// </summary>
-        /// <param name="service">The required service for the class.</param>
-        public AccountController(IUsersService service)
+        /// <param name="userService">The required service for the class.</param>
+        public AccountController(IUsersService userService, IFactsService factsService)
         {
-            this.service = service;
+            this.userService = userService;
+            this.factsService = factsService;
         }
 
         /// <summary>
@@ -35,16 +37,16 @@ namespace FactOff.Controllers
         [FactOffAuthorize]
         public IActionResult Profile()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            User user = userService.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
+            ProfileViewModel model = factsService.GetAllFactByUser(user);
+            return View(model);
         }
 
         [FactOffAuthorize]
         public IActionResult EditProfile()
         {
-            var user = service.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
-            var model = new AccountViewModel
+            User user = userService.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
+            AccountViewModel model = new AccountViewModel
             {
                 Name = user.Name,
                 Email = user.Email
@@ -59,12 +61,12 @@ namespace FactOff.Controllers
             if (ModelState.IsValid)
             {
                 byte[] image;
-                using (var ms = new MemoryStream())
+                using (MemoryStream ms = new MemoryStream())
                 {
                     request.ImageUploaded.CopyTo(ms);
                     image = ms.ToArray();
                 }
-                service.EditUser(new Guid(HttpContext.Session.GetString("logeduser")), request.Email, image, request.ImageUploaded.ContentType, request.Name, request.Password);
+                userService.EditUser(new Guid(HttpContext.Session.GetString("logeduser")), request.Email, image, request.ImageUploaded.ContentType, request.Name, request.Password);
                 return RedirectToAction("Index", "Home");
             }
             request.Password = null;
@@ -74,7 +76,7 @@ namespace FactOff.Controllers
         [FactOffAuthorize]
         public FileStreamResult GetUserImage()
         {
-            var user = service.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
+            User user = userService.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
             Stream stream = new MemoryStream(user.Image);
             return new FileStreamResult(stream, user.ImageContentType);
         }
@@ -114,7 +116,7 @@ namespace FactOff.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userId = service.SignIn(requestModel.Email, requestModel.Password);
+                string userId = userService.SignIn(requestModel.Email, requestModel.Password);
                 if (userId != null)
                 {
                     HttpContext.Session.SetString("logeduser", userId);
@@ -156,13 +158,13 @@ namespace FactOff.Controllers
         [HttpPost]
         public IActionResult Registration(RegisterViewModel requestModel)
         {
-            if (service.UserExists(requestModel.Email))
+            if (userService.UserExists(requestModel.Email))
             {
                 ModelState.AddModelError("", "There is already an account with this email.");
             }
             else
             {
-                service.CreateUser(requestModel.Email, requestModel.Name, requestModel.Password);
+                userService.CreateUser(requestModel.Email, requestModel.Name, requestModel.Password);
                 return RedirectToAction("SignIn", "Account");
             }
             return View();

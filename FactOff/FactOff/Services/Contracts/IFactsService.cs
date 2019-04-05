@@ -86,5 +86,11 @@ namespace FactOff.Services.Contracts
         /// <param name="fact">The fact that the tag will be added to.</param>
         /// <param name="tag">The tag that will be added to the fact.</param>
         void AddTag(Fact fact, Tag tag);
+        /// <summary>
+        /// Returns a collection with all the facts create by a given <paramref name="user"/>.
+        /// </summary>
+        /// <param name="user">Creator of the facts.</param>
+        /// <returns>The facts created by the <paramref name="user"/>.</returns>
+        ProfileViewModel GetAllFactByUser(User user);
     }
 }

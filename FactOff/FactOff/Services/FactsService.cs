@@ -150,8 +150,7 @@ namespace FactOff.Services
         /// <returns>View Model for the Index page in the Facts folder</returns>
         public FactsIndexViewModel GetAllFacts()
         {
-            Console.WriteLine(context.Facts);
-            var facts = context.Facts.Select(f => new FactIndexViewModel()
+            IEnumerable<FactIndexViewModel> facts = context.Facts.Select(f => new FactIndexViewModel()
             {
                 Context = f.Context,
                 CreatorName = f.Creator.Name,
@@ -239,6 +238,23 @@ namespace FactOff.Services
             context.Facts.Where(f => f == fact).FirstOrDefault().Context = newContext;
             context.SaveChanges();
             return fact.FactId;
+        }
+
+        /// <summary>
+        /// Returns a collection with all the facts create by a given <paramref name="user"/>.
+        /// </summary>
+        /// <param name="user">Creator of the facts.</param>
+        /// <returns>The facts created by the <paramref name="user"/>.</returns>
+        public ProfileViewModel GetAllFactByUser(User user)
+        {
+            IQueryable<ProfileFactViewModel> facts = context.Facts.Where(f => f.Creator == user).Select(f => new ProfileFactViewModel()
+            {
+                Context = f.Context,
+                Rating = f.Rating,
+                ThemeName = f.Theme.Name,
+                TagsNames = f.Tags.Select(t => t.Tag.Name)
+            });
+            return new ProfileViewModel() { Facts = facts };
         }
     }
 }
