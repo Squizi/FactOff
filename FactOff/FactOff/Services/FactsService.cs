@@ -25,7 +25,7 @@ namespace FactOff.Services
         {
             Fact fact = new Fact()
             {
-                Context = factContext,
+                Context = factContext
             };
             context.Facts.Add(fact);
             context.SaveChanges();
