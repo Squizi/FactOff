@@ -17,7 +17,7 @@ namespace FactOff.Services
 
         public void AddTag(Fact fact, Tag tag)
         {
-            context.Facts.Where(f => f == fact).FirstOrDefault().Tags.Add(new FactsTags() { FactId = fact.FactId, TagId = tag.TagId });
+            fact.Tags.Add(new FactsTags() { FactId = fact.FactId, TagId = tag.TagId });
             context.SaveChanges();
         }
 
@@ -70,7 +70,7 @@ namespace FactOff.Services
 
         public void RemoveTag(Fact fact, Tag tag)
         {
-            context.Facts.Where(f => f == fact).FirstOrDefault().Tags.Remove(fact.Tags.Where(x => x.Tag == tag).FirstOrDefault());
+            fact.Tags.Remove(fact.Tags.Where(x => x.Tag == tag).FirstOrDefault());
             context.SaveChanges();
         }
 
