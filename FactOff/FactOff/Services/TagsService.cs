@@ -120,7 +120,8 @@ namespace FactOff.Services
         /// <see cref="GetTagById(Guid)"/>
         public int DeleteTag(Tag tag)
         {
-            throw new NotImplementedException();
+            context.Tags.Remove(tag);
+            return context.SaveChanges();
         }
 
         /// <summary>

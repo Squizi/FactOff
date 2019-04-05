@@ -10,6 +10,6 @@ namespace FactOff.Services.Contracts
         Guid UpdateTheme(Theme theme, string name);
         int DeleteTheme(Theme theme);
         Theme GetThemeById(Guid id);
-        IEnumerable<Theme> GetAll();
+        IEnumerable<Theme> GetAllThemes();
     }
 }

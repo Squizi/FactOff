@@ -22,7 +22,7 @@ namespace FactOff.Controllers
         {
             var model = new HomeViewModel
             {
-                Themes = serviceTheme.GetAll().Select(t => new HomeThemeViewModel
+                Themes = serviceTheme.GetAllThemes().Select(t => new HomeThemeViewModel
                 {
                     ThemeId = t.ThemeId,
                     Name = t.Name

@@ -49,7 +49,6 @@ namespace FactOff.Services
             this.context = context;
         }
 
-        #region AddTag
         /// <summary>
         /// Adds a <paramref name="tag"/> to a given <paramref name="fact"/>.
         /// </summary>
@@ -76,7 +75,6 @@ namespace FactOff.Services
             fact.Tags.Add(new FactsTags() { FactId = fact.FactId, TagId = tag.TagId });
             context.SaveChanges();
         }
-        #endregion
 
         /// <summary>
         /// Creates a new fact with the given <paramref name="factContext"/>.
