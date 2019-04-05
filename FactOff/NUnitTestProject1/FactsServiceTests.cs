@@ -22,11 +22,11 @@ namespace Tests
             mockSet.As<IQueryable<Fact>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Fact>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<Fact>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-            
-            var mockContext = new Mock<FactOffContext>();
+            var options = new Mock<DbContextOptions>();
+            var mockContext = new Mock<FactOffContext>(options);
             mockContext.Setup(f => f.Facts).Returns(mockSet.Object);
 
-            var factsService = new FactsService(mockContext.Object);
+            var factsService = new FactsService(mockContext);
 
             Fact fact = new Fact();
             fact.Context = "This is a fact.";
@@ -98,7 +98,6 @@ namespace Tests
             fact.Context = "This is a fact.";
             Tag tag = new Tag();
             tag.TagId = Guid.NewGuid();
-            Guid tagId = tag.TagId;
 
             factsService.Object.AddTag(fact, tag);
             factsService.Object.RemoveTag(fact, tag);
