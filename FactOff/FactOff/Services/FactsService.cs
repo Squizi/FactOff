@@ -41,7 +41,7 @@ namespace FactOff.Services
         private readonly FactOffContext context;
 
         /// <summary>
-        /// The constructor for the FactsService that is being called by the StartUp class.
+        /// The constructor for the <c>FactsService</c> that is being called by the <c>StartUp class</c>.
         /// </summary>
         /// <param name="context">The required context for the connection to the database.</param>
         public FactsService(FactOffContext context)
@@ -49,6 +49,7 @@ namespace FactOff.Services
             this.context = context;
         }
 
+        #region AddTag
         /// <summary>
         /// Adds a <paramref name="tag"/> to a given <paramref name="fact"/>.
         /// </summary>
@@ -75,9 +76,10 @@ namespace FactOff.Services
             fact.Tags.Add(new FactsTags() { FactId = fact.FactId, TagId = tag.TagId });
             context.SaveChanges();
         }
+        #endregion
 
         /// <summary>
-        /// Creates a new fact with the given <pa.
+        /// Creates a new fact with the given <paramref name="factContext"/>.
         /// </summary>
         /// <param name="factContext">The context of the fact that will be displyed.</param>
         /// <returns>The guid of the newly created fact.</returns>
@@ -112,6 +114,7 @@ namespace FactOff.Services
         /// Console.WriteLine($"{GetFactById(factIf).Context}")
         /// </code>
         /// </example>
+        /// <see cref="CreateFact(string)"/>
         public Fact GetFactById(Guid id)
         {
             return context.Facts.Where(f => f.FactId == id).FirstOrDefault();
@@ -135,6 +138,8 @@ namespace FactOff.Services
         /// }
         /// </code>
         /// </example>
+        /// <see cref="CreateFact(string)"/>
+        /// <seealso cref="GetFactById(Guid)"/>
         public int DeleteFact(Fact fact)
         {
             context.Facts.Remove(fact);
@@ -207,6 +212,8 @@ namespace FactOff.Services
         /// }
         /// </code>
         /// </example>
+        /// <see cref="CreateFact(string)"/>
+        /// <seealso cref="GetFactById(Guid)"/>
         public void RemoveTag(Fact fact, Tag tag)
         {
             fact.Tags.Remove(fact.Tags.Where(x => x.Tag == tag).FirstOrDefault());
@@ -227,6 +234,8 @@ namespace FactOff.Services
         /// Console.WriteLine(fact.Context);
         /// </code>
         /// </example>
+        /// <see cref="CreateFact(string)"/>
+        /// <seealso cref="GetFactById(Guid)"/>
         public Guid UpdateFact(Fact fact, string newContext)
         {
             context.Facts.Where(f => f == fact).FirstOrDefault().Context = newContext;

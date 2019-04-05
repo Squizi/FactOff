@@ -28,29 +28,67 @@ namespace FactOff.Services
     /// </item>
     /// </list>
     /// </summary>
+    /// <remarks>
+    /// <para>This class can communicate with the database and edit the information in the tags table.</para>
+    /// </remarks>
     public class TagsService : ITagsService
     {
+        /// <summary>
+        /// The required context for the connection to the database.
+        /// </summary>
         private readonly FactOffContext context;
 
+        /// <summary>
+        /// The constructor for the <c>TagsService</c> that is being called by the <c>StartUp class</c>.
+        /// </summary>
+        /// <param name="context">The required context for the connection to the database.</param>
         public TagsService(FactOffContext context)
         {
             this.context = context;
         }
 
+        /// <summary>
+        /// Creates a new tag with the given <paramref name="name"/>
+        /// </summary>
+        /// <param name="name">The name of the tag.</param>
+        /// <returns>The id of the created tag.</returns>
+        /// <example>
+        /// <code>
+        /// Guid tagId = CreateTag("My tag");
+        /// Tag tag = context.Tags.Where(t => t.Name == name).FirstOrDefault();
+        /// Console.WriteLine(tag.Name);
+        /// </code>
+        /// </example>
         public Guid CreateTag(string name)
         {
             Tag tag = new Tag()
             {
                 Name = name.First().ToString().ToUpper() + name.Substring(1).ToLower()
             };
-
             context.Tags.Add(tag);
             context.SaveChanges();
 
             return tag.TagId;
         }
 
-        public List<Guid> CreateTags(string tagsString)
+        /// <summary>
+        /// Creates many tags at once with the given <paramref name="tagsString"/>.
+        /// </summary>
+        /// <param name="tagsString">A string that separetes the names of the tags with a space</param>
+        /// <returns>A collection of the ids of the new tags</returns>
+        /// <example>
+        /// <code>
+        /// List<Guid> ids = CreatTags("tag1 tag2 tag3");
+        /// List<Tag> tags = new List<Tag>();
+        /// foreach(var id in ids){
+        ///     tags.Add(context.Tags.Where(t => t.TagId == id).FirstOrDefault())
+        /// }
+        /// foreach(var tag in tags){
+        ///     Console.WriteLine(tag.Name);
+        /// }
+        /// </code>
+        /// </example>
+        public IEnumerable<Guid> CreateTags(string tagsString)
         {
             List<string> tagsList = tagsString.Split().ToList();
             List<Guid> tagsId = new List<Guid>(); ;
@@ -69,16 +107,53 @@ namespace FactOff.Services
             return tagsId;
         }
 
+        /// <summary>
+        /// Delete a specific <paramref name="tag"/>
+        /// </summary>
+        /// <param name="tag">Tag to be deleted.</param>
+        /// <returns>Rows affected.</returns>
+        /// <example>
+        /// <code>
+        /// Tag tag = GetTagById(CreateTag)
+        /// </code>
+        /// </example>
+        /// <see cref="GetTagById(Guid)"/>
         public int DeleteTag(Tag tag)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns a tag with a given <paramref name="id"/>
+        /// </summary>
+        /// <param name="id">The id of the tag to be serched.</param>
+        /// <returns>The tag with the coresponding id.</returns>
+        /// <example>
+        /// <code>
+        /// Guid tagId = CreateTag("My Tag");
+        /// Tag tag = GetTagById(tagId);
+        /// Console.WriteLine(tag.Name);
+        /// </code>
+        /// </example>
+        /// <see cref="CreateTag(string)"/>
         public Tag GetTagById(Guid id)
         {
             return context.Tags.Where(t => t.TagId == id).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Edits the name of a given <paramref name="tag"/> to a <paramref name="newName"/>
+        /// </summary>
+        /// <param name="tag">The tag to be updated.</param>
+        /// <param name="newName">The new name of the tag.</param>
+        /// <returns>The id of the edited tag</returns>
+        /// <example>
+        /// <code>
+        /// Tag tag = GetTagById(CreateTag("My tag"));
+        /// UpdateTag(tag, "New named tag");
+        /// Console.WriteLine(tag.Name);
+        /// </code>
+        /// </example>
         public Guid UpdateTag(Tag tag, string newName)
         {
             context.Tags.Where(t => t == tag).FirstOrDefault().Name = newName;

@@ -7,7 +7,7 @@ namespace FactOff.Services.Contracts
     public interface ITagsService
     {
         Guid CreateTag(string name);
-        List<Guid> CreateTags(string tagsString);
+        IEnumerable<Guid> CreateTags(string tagsString);
         int DeleteTag(Tag tag);
         Guid UpdateTag(Tag tag, string name);
         Tag GetTagById(Guid id);
