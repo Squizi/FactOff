@@ -13,33 +13,42 @@
 
 
 <div class="row">
-    <div class="col-xs-6 col-sm-4 col-md-3 devide-container">
-        @foreach (var theme in Model.Themes)
-        {
-            <div class="thumbnail ne">
+
+    @foreach (var theme in Model.Themes)
+    {
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <div class="thumbnail">
                 <a href="">
-                    <img src="@Url.Action("GetThemeImage", "Themes", new {themeId = theme.ThemeId})" alt="Art theme">
+                    <div class="box ratio16_9">
+                        <div class="content">
+                            <img src="@Url.Action("GetThemeImage", "Themes", new {themeId = theme.ThemeId})" alt="Art theme">
+                        </div>
+                    </div>
                     <div class="caption">
                         <h3 class="centered">@theme.Name</h3>
                     </div>
                 </a>
             </div>
-        }
-    </div>
+        </div>
+    }
+
 </div>
 
 @foreach (var fact in Model.Facts)
 {
-    <div class="container">
-        <div class="row">
-            <div>
-                <img />
-                @*rating*@
-            </div>
-            <div>
-                <p>@fact.Context</p>
-            </div>
+<div class="facts-container">
+    <div class="row fact-padding">
+        <div>
+            <p class="fact-creator">@fact.Creator.Name</p>
+            @*rating*@
+        </div>
+        <div>
+            <p>@fact.Context</p>
+            @foreach (var tag in fact.Tags)
+            {
+                <span class="tags">@tag.Name</span>
+            }
         </div>
     </div>
+</div>
 }
-

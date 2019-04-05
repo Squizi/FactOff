@@ -1,6 +1,7 @@
 ﻿using FactOff.Models.DB;
 using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -177,7 +178,11 @@ namespace FactOff.Services
         /// </example>
         public IEnumerable<Fact> GetRandomTen()
         {
-            return context.Facts.Take(10);
+            return context.Facts
+                .Include(f => f.Creator)
+                .Include(f => f.Tags)
+                    .ThenInclude(ft => ft.Tag)
+                .Take(10);
         }
 
         /// <summary>
