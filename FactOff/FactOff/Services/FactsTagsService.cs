@@ -6,17 +6,16 @@ using System.Linq;
 
 namespace FactOff.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class FactsTagsService : IFactsTagsService
     {
         private readonly FactOffContext context;
-        //private ITagsService tagService;
-        //private IFactsService factService;
 
         public FactsTagsService(FactOffContext context)
         {
             this.context = context;
-            //this.tagService = tagService;
-            //this.factService = factService;
         }
 
         public int AddTagsToFact(Guid factId, List<Guid> tagsId)

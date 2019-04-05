@@ -214,6 +214,14 @@ namespace FactOff.Services
         /// <param name="fact">The fact to be updated.</param>
         /// <param name="newContext">The new context to the fact.</param>
         /// <returns>The id of the changed fact.</returns>
+        /// <example>
+        /// <code>
+        /// Guid factId = CreateFact("This is create context");
+        /// Fact fact = GetFactById(factId);
+        /// UpdateFact(fact, "This is the new context");
+        /// Console.WriteLine(fact.Context);
+        /// </code>
+        /// </example>
         public Guid UpdateFact(Fact fact, string newContext)
         {
             context.Facts.Where(f => f == fact).FirstOrDefault().Context = newContext;
