@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using FactOff.Attributes;
 using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -15,16 +16,19 @@ namespace FactOff.Controllers
             this.service = service;
         }
 
+        [FactOffAuthorize]
         public IActionResult Index()
         {
             return View();
         }
 
+        [FactOffAuthorize]
         public IActionResult Create()
         {
             return View();
         }
 
+        [FactOffAuthorize]
         [HttpPost]
         public IActionResult Create(ThemeViewModel request)
         {

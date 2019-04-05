@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FactOff.Attributes;
 using FactOff.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FactOff.Controllers
 {
+    [FactOffAuthorize]
     public class FactsController : Controller
     {
         /// <summary>

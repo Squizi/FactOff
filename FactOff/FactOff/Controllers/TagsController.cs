@@ -1,8 +1,10 @@
-﻿using FactOff.Services.Contracts;
+﻿using FactOff.Attributes;
+using FactOff.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FactOff.Controllers
 {
+    [FactOffAuthorize]
     public class TagsController : Controller
     {
         private readonly ITagsService service;

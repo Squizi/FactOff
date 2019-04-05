@@ -6,6 +6,7 @@ using FactOff.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
+using FactOff.Attributes;
 
 namespace FactOff.Controllers
 {
@@ -28,18 +29,10 @@ namespace FactOff.Controllers
         }
 
         /// <summary>
-        /// The action redirects to the Index page in the Account folder.
-        /// </summary>
-        /// <returns>Rendered view to the response.</returns>
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        /// <summary>
         /// The action redirects to the Profile page in the Account folder.
         /// </summary>
         /// <returns>Rendered view to the response.</returns>
+        [FactOffAuthorize]
         public IActionResult Profile()
         {
             ViewData["Message"] = "Your application description page.";
@@ -47,6 +40,7 @@ namespace FactOff.Controllers
             return View();
         }
 
+        [FactOffAuthorize]
         public IActionResult EditProfile()
         {
             var user = service.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
@@ -58,6 +52,7 @@ namespace FactOff.Controllers
             return View(model);
         }
 
+        [FactOffAuthorize]
         [HttpPost]
         public IActionResult EditProfile(AccountViewModel request)
         {
@@ -70,12 +65,13 @@ namespace FactOff.Controllers
                     image = ms.ToArray();
                 }
                 service.EditUser(new Guid(HttpContext.Session.GetString("logeduser")), request.Email, image, request.ImageUploaded.ContentType, request.Name, request.Password);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             request.Password = null;
             return View(request);
         }
 
+        [FactOffAuthorize]
         public FileStreamResult GetUserImage()
         {
             var user = service.GetUserById(new Guid(HttpContext.Session.GetString("logeduser")));
@@ -87,6 +83,7 @@ namespace FactOff.Controllers
         /// The action redirects to the SavedPosted page in the Account folder.
         /// </summary>
         /// <returns>Rendered view to the response.</returns>
+        [FactOffAuthorize]
         public IActionResult SavedPosted()
         {
             ViewData["Message"] = "Your contact page.";
@@ -135,6 +132,7 @@ namespace FactOff.Controllers
         /// The action redirects to the Index page in the Home folder.
         /// </summary>
         /// <returns>Rendered view to the response.</returns>
+        [FactOffAuthorize]
         public IActionResult SignOut()
         {
             HttpContext.Session.Remove("logeduser");
@@ -168,26 +166,6 @@ namespace FactOff.Controllers
                 return RedirectToAction("SignIn", "Account");
             }
             return View();
-        }
-
-
-        /// <summary>
-        /// The action redirects to the 404 PageNotFound in the Shared folder.
-        /// </summary>
-        /// <returns>Rendered view to the response.</returns>
-        public IActionResult PageNotFound()
-        {
-            return RedirectToAction("PageNotFound", "Shared");
-        }
-
-        /// <summary>
-        /// In case of an error redirects to the Error page in the Shared folder
-        /// </summary>
-        /// <returns>Rendered error view to the response.</returns>
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
