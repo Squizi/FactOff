@@ -8,10 +8,10 @@ namespace FactOff.Models.DB
             : base(options)
         { }
 
-        public DbSet<Fact> Facts { get; set; }
-        public DbSet<Theme> Themes { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-        public DbSet<User> Users { get; set; }
+        public virtual DbSet<Fact> Facts { get; set; }
+        public virtual DbSet<Theme> Themes { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
