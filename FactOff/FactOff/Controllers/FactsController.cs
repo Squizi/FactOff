@@ -10,7 +10,6 @@ namespace FactOff.Controllers
         /// <summary>
         /// The service allows the many-to-many connection between the facts and the tags.
         /// </summary>
-        private readonly IFactsTagsService factsTagsService;
         /// <summary>
         /// 
         /// </summary>
@@ -20,9 +19,8 @@ namespace FactOff.Controllers
         /// </summary>
         private readonly ITagsService tagsService;
 
-        public FactsController(IFactsTagsService factsTagsService, IFactsService factsService, ITagsService tagsService)
+        public FactsController(IFactsService factsService, ITagsService tagsService)
         {
-            this.factsTagsService = factsTagsService;
             this.factsService = factsService;
             this.tagsService = tagsService;
         }
@@ -43,7 +41,10 @@ namespace FactOff.Controllers
         {
             Guid factId = factsService.CreateFact(factContext);
             List<Guid> tagsId = tagsService.CreateTags(tagsString);
-            factsTagsService.AddTagsToFact(factId, tagsId);
+            foreach (Guid tagId in tagsId)
+            {
+                factsService.AddTag(factsService.GetFactById(factId), tagsService.GetTagById(tagId));
+            }
 
             return RedirectToAction("Index");
         }
