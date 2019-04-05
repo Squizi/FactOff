@@ -9,8 +9,8 @@ namespace FactOff.Controllers
 {
     public class HomeController : Controller
     {
-        private IThemesService serviceTheme;
-        private IFactsService serviceFacts;
+        private readonly IThemesService serviceTheme;
+        private readonly IFactsService serviceFacts;
 
         public HomeController(IThemesService serviceTheme, IFactsService serviceFacts)
         {
