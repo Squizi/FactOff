@@ -6,12 +6,26 @@ using System.Threading.Tasks;
 
 namespace FactOff.Models.ViewModels
 {
+    /// <summary>
+    /// View Model of a single fact for the Index page in the Home folder.
+    /// </summary>
     public class HomeFactViewModel
     {
-        public Guid FactId { get; set; }
+        /// <summary>
+        /// The context of the fact.
+        /// </summary>
         public string Context { get; set; }
+        /// <summary>
+        /// The rating of the fact.
+        /// </summary>
         public float Rating { get; set; }
-        public User Creator { get; set; }
-        public IEnumerable<HomeTagViewModel> Tags { get; set; }
+        /// <summary>
+        /// The name of the user that created the fact.
+        /// </summary>
+        public string CreatorName { get; set; }
+        /// <summary>
+        /// The names of all the tags associated with the fact.
+        /// </summary>
+        public IEnumerable<string> TagsNames { get; set; }
     }
 }
