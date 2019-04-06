@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagsServiceTests", "TagsSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemesServiceTests", "ThemesServiceTests\ThemesServiceTests.csproj", "{35F47EDE-8ABA-4502-8352-06FB38E1C2AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersServiceTests", "UsersServiceTests\UsersServiceTests.csproj", "{A4BF5702-2EFD-4C85-8A15-5DC92D98D773}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{35F47EDE-8ABA-4502-8352-06FB38E1C2AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35F47EDE-8ABA-4502-8352-06FB38E1C2AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35F47EDE-8ABA-4502-8352-06FB38E1C2AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4BF5702-2EFD-4C85-8A15-5DC92D98D773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4BF5702-2EFD-4C85-8A15-5DC92D98D773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4BF5702-2EFD-4C85-8A15-5DC92D98D773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4BF5702-2EFD-4C85-8A15-5DC92D98D773}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

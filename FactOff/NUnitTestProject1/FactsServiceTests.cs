@@ -27,7 +27,6 @@ namespace Tests
             _ = optionsBuilder.UseInMemoryDatabase();
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
-
             Fact fact = new Fact();
             fact.Context = "This is a fact.";
             var factContext = "This is a fact.";
@@ -102,8 +101,17 @@ namespace Tests
             _ = optionsBuilder.UseInMemoryDatabase();
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
+            string factContext1 = "First fact.";
+            string factContext2 = "Second fact.";
+            string factContext3 = "Third fact.";
+            User Creator = new User();
 
-            //Must do.
+            factsService.CreateFact(factContext1, Creator);
+            factsService.CreateFact(factContext2, Creator);
+            factsService.CreateFact(factContext3, Creator);
+            var model = factsService.GetAllFacts();
+
+            Assert.AreEqual(model.Facts.Skip(2).First().Context, factContext3, "Context of third fact is not what it should be.");
         }
 
         [Test]
