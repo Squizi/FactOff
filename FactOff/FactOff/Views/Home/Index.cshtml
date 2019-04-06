@@ -39,20 +39,14 @@
 <div class="facts-container">
     <div class="row fact-padding">
         <div>
-            @if (fact.Creator == null)
-            {
-                <p class="fact-creator"> </p>
-            }
-            @if(fact.Creator != null) { 
-                <p class="fact-creator">@fact.Creator.Name</p>
-            }
+            <p class="fact-creator">@fact.CreatorName</p>
             @*rating*@
         </div>
         <div>
             <p>@fact.Context</p>
-            @foreach (var tag in fact.Tags)
+            @foreach (var tagName in fact.TagsNames)
             {
-                <span class="tags">@tag.Name</span>
+                <span class="tags">@tagName</span>
             }
         </div>
     </div>

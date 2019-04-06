@@ -49,15 +49,10 @@ namespace FactOff.Controllers
                 }),
                 Facts = factsService.GetRandomTen().Select(f => new HomeFactViewModel
                 {
-                    FactId = f.FactId,
                     Context = f.Context,
                     Rating = f.Rating,
-                    Creator = f.Creator,
-                    Tags = f.Tags.Select(t => new HomeTagViewModel
-                    {
-                        TagId = t.TagId,
-                        Name = t.Tag.Name
-                    })
+                    CreatorName = f.Creator.Name,
+                    TagsNames = f.Tags.Select(t => t.Tag.Name)
                 })
             };
             return View(model);
