@@ -1,9 +1,11 @@
-﻿namespace FactOff.Models.ViewModels
+﻿using System.Collections.Generic;
+
+namespace FactOff.Models.ViewModels
 {
     public class SearchViewModel
     {
-        public string FactContent { get; set; }
-        public string CreatorName { get; set; }
-        public float FactRating { get; set; }
+        public string Search { get; set; }
+        public IEnumerable<HomeTagViewModel> Tags { get; set; }
+        public IEnumerable<HomeFactViewModel> Facts { get; set; }
     }
 }

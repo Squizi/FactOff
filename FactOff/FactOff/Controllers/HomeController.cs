@@ -4,6 +4,7 @@ using FactOff.Models;
 using FactOff.Models.ViewModels;
 using FactOff.Services.Contracts;
 using System.Linq;
+using System.Collections;
 
 namespace FactOff.Controllers
 {
@@ -57,6 +58,14 @@ namespace FactOff.Controllers
             };
             return View(model);
         }
+
+        public IActionResult Facts()
+        {
+            ViewData["Message"] = "Your application page full of facts.";
+
+            return View();
+        }
+
 
         /// <summary>
         /// Lets the user contact the developers if he encounters a problem.
