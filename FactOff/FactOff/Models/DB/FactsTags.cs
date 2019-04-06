@@ -12,7 +12,7 @@ namespace FactOff.Models.DB
         /// </summary>
         public Guid FactId { get; set; }
         /// <summary>
-        /// Easier use of the Facts model for database manipulation.
+        /// Easier use of the Fact model for database manipulation.
         /// </summary>
         public Fact Fact { get; set; }
         /// <summary>
