@@ -37,7 +37,7 @@ namespace FactOff.Services.Contracts
         /// </summary>
         /// <param name="factContext">The context of the fact that will be displyed.</param>
         /// <returns>The guid of the newly created fact.</returns>
-        Guid CreateFact(string context, User creator);
+        Guid CreateFact(string context, User creator, string themeName);
 
         /// <summary>
         /// Return all needed fields for the Index page in the Facts folder

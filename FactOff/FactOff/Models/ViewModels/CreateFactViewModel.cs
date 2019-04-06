@@ -1,4 +1,6 @@
-﻿namespace FactOff.Models.ViewModels
+﻿using System.Collections.Generic;
+
+namespace FactOff.Models.ViewModels
 {
 
     /// <summary>
@@ -14,5 +16,13 @@
         /// The tags of the new fact.
         /// </summary>
         public string TagsString { get; set; }
+        /// <summary>
+        /// All available themes.
+        /// </summary>
+        public IEnumerable<string> ThemesNames { get; set; }
+        /// <summary>
+        /// The selected theme by the user.
+        /// </summary>
+        public string SelectedTheme { get; set; }
     }
 }

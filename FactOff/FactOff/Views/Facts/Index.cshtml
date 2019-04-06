@@ -8,7 +8,8 @@
     @foreach (var fact in Model.Facts)
     {
         <div class="fact">
-            <p class="fact-context">@fact.Context</p><p class="fact-creator">@fact.CreatorName</p><br /><br />
+            <p class="fact-context">@fact.Context</p><p class="fact-creator">@fact.CreatorName</p><br />
+            @if(fact.ThemeName != null){<span class="fact-theme">@fact.ThemeName</span>}<br />
             @foreach (var tagName in fact.TagsNames)
             {
                 <span class="tags">@string.Join(", ", tagName) </span>

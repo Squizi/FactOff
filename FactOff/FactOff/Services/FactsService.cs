@@ -89,12 +89,13 @@ namespace FactOff.Services
         /// }
         /// </code>
         /// </example>
-        public Guid CreateFact(string factContext, User creator)
+        public Guid CreateFact(string factContext, User creator, string themeName)
         {
             Fact fact = new Fact()
             {
                 Context = factContext,
-                Creator = creator
+                Creator = creator,
+                Theme = context.Themes.Where(t => t.Name == themeName).FirstOrDefault()
             };
             context.Facts.Add(fact);
             context.SaveChanges();
@@ -157,6 +158,7 @@ namespace FactOff.Services
                 CreatorName = f.Creator.Name,
                 CreatorId = f.Creator.UserId.ToString(),
                 Rating = f.Rating,
+                ThemeName = f.Theme.Name,
                 TagsNames = f.Tags.Select(t => t.Tag.Name)
             });
 

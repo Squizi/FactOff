@@ -23,6 +23,13 @@
                 <span asp-validation-for="TagsString" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="SelectedTheme" class="control-label"></label>
+                <select asp-for="SelectedTheme" asp-items="@(new SelectList(Model.ThemesNames))" class="form-control">
+                    
+                </select>
+                <span asp-validation-for="SelectedTheme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>

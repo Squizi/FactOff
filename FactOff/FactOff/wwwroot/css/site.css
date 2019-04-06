@@ -81,6 +81,11 @@ body {
     margin-top: 20px;
 }
 
+.fact-theme {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .themes-container {
     margin-top: 20px;
 }

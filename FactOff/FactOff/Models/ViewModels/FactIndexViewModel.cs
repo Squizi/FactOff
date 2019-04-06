@@ -16,6 +16,10 @@ namespace FactOff.Models.ViewModels
         /// </summary>
         public string CreatorName { get; set; }
         /// <summary>
+        /// The name of the theme of the fact.
+        /// </summary>
+        public string ThemeName { get; set; }
+        /// <summary>
         /// The id of the user that created the fact.
         /// </summary>
         public string CreatorId { get; set; }
