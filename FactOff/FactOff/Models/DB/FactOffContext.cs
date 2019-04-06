@@ -2,17 +2,44 @@
 
 namespace FactOff.Models.DB
 {
+    /// <summary>
+    /// Allows work with the database.
+    /// </summary>
     public class FactOffContext : DbContext
     {
+        /// <summary>
+        /// Initializes a new instance of the <c>FactOffContext class</c> using the default options.
+        /// </summary>
+        /// <param name="options"></param>
         public FactOffContext(DbContextOptions<FactOffContext> options)
             : base(options)
         { }
 
+        /// <summary>
+        /// Represents the facts table from the database.
+        /// </summary>
         public virtual DbSet<Fact> Facts { get; set; }
+        /// <summary>
+        /// Represents the themes table from the database.
+        /// </summary>
         public virtual DbSet<Theme> Themes { get; set; }
+        /// <summary>
+        /// Represents the tags table from the database.
+        /// </summary>
         public virtual DbSet<Tag> Tags { get; set; }
+        /// <summary>
+        /// Represents the users table from the database.
+        /// </summary>
         public virtual DbSet<User> Users { get; set; }
 
+        /// <summary>
+        /// Configures the model that was discovered by convention from the entity types exposed in Microsoft.EntityFrameworkCore.DbSet`1.
+        /// </summary>
+        /// <param name="modelBuilder">Used to construct the model for this context.</param>
+        /// <remarks>
+        /// If a model is explicitly set on the options for this context (via Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseModel(Microsoft.EntityFrameworkCore.Metadata.IModel))
+        /// then this method will not be run.
+        /// </remarks>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

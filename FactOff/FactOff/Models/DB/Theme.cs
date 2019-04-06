@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FactOff.Models.DB
 {
+    /// <summary>
+    /// Model of the themes table from the database.
+    /// </summary>
     public class Theme
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -157,7 +157,7 @@ namespace FactOff.Services
         /// </example>
         public Guid UpdateTag(Tag tag, string newName)
         {
-            context.Tags.Where(t => t == tag).FirstOrDefault().Name = newName;
+            tag.Name = newName;
             context.SaveChanges();
 
             return tag.TagId;
