@@ -43,6 +43,7 @@ namespace FactOff
             services.AddScoped<IThemesService, ThemesService>();
             services.AddScoped<ITagsService, TagsService>();
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<ISearchService, SearchService>();
 
             var connection = @"Server=home.kutiika.net;Database=FactOff;Uid=factoff;Pwd=UrNG1pffHsoAZCnc6YMh;";
             services.AddDbContext<FactOffContext>

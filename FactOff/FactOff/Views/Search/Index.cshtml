@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@foreach (var fact in Model.Facts)
+{
+    <div class="facts-container">
+        <div class="row fact-padding">
+            <div>
+                @if (fact.Creator == null)
+                {
+                    <p class="fact-creator"> </p>
+                }
+                @if (fact.Creator != null)
+                {
+                    <p class="fact-creator">@fact.Creator.Name</p>
+                }
+                @*rating*@
+            </div>
+            <div>
+                <p>@fact.Context</p>
+                @foreach (var tag in fact.Tags)
+                {
+                    <span class="tags">@tag.Name</span>
+                }
+            </div>
+        </div>
+    </div>
+}
