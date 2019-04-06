@@ -14,6 +14,7 @@ namespace Tests
     public class FactsServiceTests : DbContext
     {
         [Test]
+        [Obsolete]
         public void AddsTagToFact()
         {
             var data = new List<Fact>().AsQueryable();
@@ -23,9 +24,7 @@ namespace Tests
             mockSet.As<IQueryable<Fact>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<Fact>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
             var optionsBuilder = new DbContextOptionsBuilder<FactOffContext>();
-#pragma warning disable CS0618 // Type or member is obsolete
-            optionsBuilder.UseInMemoryDatabase();
-#pragma warning restore CS0618 // Type or member is obsolete
+            _ = optionsBuilder.UseInMemoryDatabase();
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
 
@@ -36,14 +35,16 @@ namespace Tests
             Tag tag = new Tag();
             tag.TagId = Guid.NewGuid();
             Guid tagId = tag.TagId;
+            User Creator = new User();
 
-            factsService.CreateFact(factContext);
+            factsService.CreateFact(factContext, Creator);
             factsService.AddTag(fact, tag);
 
             Assert.AreEqual(fact.Tags.First().TagId, tagId, "TagId of added tag is not the one it should be.");
         }
 
         [Test]
+        [Obsolete]
         public void CreateFactReturnsFactId()
         {
             var data = new List<Fact>().AsQueryable();
@@ -53,19 +54,19 @@ namespace Tests
             mockSet.As<IQueryable<Fact>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<Fact>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
             var optionsBuilder = new DbContextOptionsBuilder<FactOffContext>();
-#pragma warning disable CS0618 // Type or member is obsolete
-            optionsBuilder.UseInMemoryDatabase();
-#pragma warning restore CS0618 // Type or member is obsolete
+            _ = optionsBuilder.UseInMemoryDatabase();
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
             string factContext = "This is a fact.";
+            User Creator = new User();
 
-            factsService.CreateFact(factContext);
+            factsService.CreateFact(factContext, Creator);
 
             Assert.AreEqual(mockContext.Facts.First().Context, factContext, "Fact not Created.");
         }
 
         [Test]
+        [Obsolete]
         public void DeleteFactFromDB()
         {
             var data = new List<Fact>().AsQueryable();
@@ -75,20 +76,20 @@ namespace Tests
             mockSet.As<IQueryable<Fact>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<Fact>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
             var optionsBuilder = new DbContextOptionsBuilder<FactOffContext>();
-#pragma warning disable CS0618 // Type or member is obsolete
-            optionsBuilder.UseInMemoryDatabase();
-#pragma warning restore CS0618 // Type or member is obsolete
+            _ = optionsBuilder.UseInMemoryDatabase();
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
             string factContext = "This is a fact.";
+            User Creator = new User();
 
-            factsService.CreateFact(factContext);
+            factsService.CreateFact(factContext, Creator);
             factsService.DeleteFact(mockContext.Facts.First());
 
             Assert.IsEmpty(mockContext.Facts);
         }
 
         [Test]
+        [Obsolete]
         public void GetAllFactsReturnsModel()
         {
             var data = new List<Fact>().AsQueryable();
@@ -98,16 +99,15 @@ namespace Tests
             mockSet.As<IQueryable<Fact>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<Fact>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
             var optionsBuilder = new DbContextOptionsBuilder<FactOffContext>();
-#pragma warning disable CS0618 // Type or member is obsolete
-            optionsBuilder.UseInMemoryDatabase();
-#pragma warning restore CS0618 // Type or member is obsolete
+            _ = optionsBuilder.UseInMemoryDatabase();
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
 
-            
+            //Must do.
         }
 
         [Test]
+        [Obsolete]
         public void GetFactByIdReturnsFact()
         {
             var data = new List<Fact>().AsQueryable();
@@ -117,9 +117,7 @@ namespace Tests
             mockSet.As<IQueryable<Fact>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<Fact>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
             var optionsBuilder = new DbContextOptionsBuilder<FactOffContext>();
-#pragma warning disable CS0618 // Type or member is obsolete
-            optionsBuilder.UseInMemoryDatabase();
-#pragma warning restore CS0618 // Type or member is obsolete
+            _ = optionsBuilder.UseInMemoryDatabase();
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
             Fact fact = new Fact();
@@ -127,8 +125,9 @@ namespace Tests
             Tag tag = new Tag();
             tag.TagId = Guid.NewGuid();
             Guid tagId = tag.TagId;
+            User Creator = new User();
 
-            factsService.CreateFact(fact.Context);
+            factsService.CreateFact(fact.Context, Creator);
             factsService.AddTag(fact, tag);
 
             Assert.IsNull(factsService.GetFactById(tagId));
@@ -136,6 +135,7 @@ namespace Tests
         }
 
         [Test]
+        [Obsolete]
         public void RemoveTagFromDB()
         {
             var data = new List<Fact>().AsQueryable();
@@ -145,9 +145,7 @@ namespace Tests
             mockSet.As<IQueryable<Fact>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<Fact>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
             var optionsBuilder = new DbContextOptionsBuilder<FactOffContext>();
-#pragma warning disable CS0618 // Type or member is obsolete
-            optionsBuilder.UseInMemoryDatabase();
-#pragma warning restore CS0618 // Type or member is obsolete
+            _ = optionsBuilder.UseInMemoryDatabase();
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
             Fact fact = new Fact();
@@ -155,8 +153,9 @@ namespace Tests
             Tag tag = new Tag();
             tag.Name = "Test";
             tag.TagId = Guid.NewGuid();
+            User Creator = new User();
 
-            factsService.CreateFact(fact.Context);
+            factsService.CreateFact(fact.Context, Creator);
             factsService.AddTag(fact, tag);
             if (mockContext.Facts.First() == fact)
             {
@@ -168,6 +167,7 @@ namespace Tests
         }
 
         [Test]
+        [Obsolete]
         public void UpdateFactInDB()
         {
             var data = new List<Fact>().AsQueryable();
@@ -177,15 +177,14 @@ namespace Tests
             mockSet.As<IQueryable<Fact>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<Fact>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
             var optionsBuilder = new DbContextOptionsBuilder<FactOffContext>();
-#pragma warning disable CS0618 // Type or member is obsolete
-            optionsBuilder.UseInMemoryDatabase();
-#pragma warning restore CS0618 // Type or member is obsolete
+            _ = optionsBuilder.UseInMemoryDatabase();
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
             var factContext = "This is a fact.";
             var updatedContext = "This is an updated fact.";
+            User Creator = new User();
 
-            factsService.CreateFact(factContext);
+            factsService.CreateFact(factContext, Creator);
             factsService.UpdateFact(mockContext.Facts.First(), updatedContext);
 
             Assert.AreEqual(mockContext.Facts.First().Context, updatedContext, "Context is not updated.");
