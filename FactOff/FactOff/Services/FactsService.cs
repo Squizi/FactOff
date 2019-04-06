@@ -256,7 +256,7 @@ namespace FactOff.Services
                 ThemeName = f.Theme.Name,
                 TagsNames = f.Tags.Select(t => t.Tag.Name)
             });
-            return new ProfileViewModel() { Facts = facts };
+            return new ProfileViewModel() { Facts = facts, SavedThemes = user.FavoriteThemes.Select(t => t.Theme.Name) };
         }
     }
 }

@@ -8,5 +8,6 @@ namespace FactOff.Models.ViewModels
     public class ProfileViewModel
     {
         public IEnumerable<ProfileFactViewModel> Facts { get; set; }
+        public IEnumerable<string> SavedThemes { get; set; }
     }
 }

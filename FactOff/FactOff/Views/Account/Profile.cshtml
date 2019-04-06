@@ -7,29 +7,34 @@
     var userName = userService.GetUserById(new Guid(Context.Session.GetString("logeduser"))).Name;
 }
 
+<div class="themes-container">
+    @foreach(string themeName in Model.SavedThemes) {
+        <span class="theme">themename</span>
+    }
+</div>
 
-    <div class="facts-container">
-        <div class="row">
-            <div class="col-xs-6 col-sm-4 col-md-3">
-                <img src="@Url.Action("GetUserImage", "Account")" width="225" height="225" />
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-3">
-                <h1>@userName</h1>
-            </div>
+<div class="facts-container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <img src="@Url.Action("GetUserImage", "Account")" width="225" height="225" />
         </div>
-        <hr />
-        @foreach (var fact in Model.Facts)
-        {
-            <div class="fact">
-                <p class="fact-context">@fact.Context</p><br /><br />
-                @foreach (var tagName in fact.TagsNames)
-                {
-                    <span class="tags">@tagName</span>
-                }
-            </div>
-            <br />
-        }
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <h1>@userName</h1>
+        </div>
     </div>
+    <hr />
+    @foreach (var fact in Model.Facts)
+    {
+        <div class="fact">
+            <p class="fact-context">@fact.Context</p><br /><br />
+            @foreach (var tagName in fact.TagsNames)
+            {
+                <span class="tags">@tagName</span>
+            }
+        </div>
+        <br />
+    }
+</div>
 
 
 
