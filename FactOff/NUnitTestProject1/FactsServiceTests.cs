@@ -43,7 +43,6 @@ namespace Tests
             factsService.AddTag(fact, tag);
 
             Assert.AreEqual(fact.Tags.First().TagId, tagId, "TagId of added tag is not the one it should be.");
-            mockSet.
         }
 
         [Test]
