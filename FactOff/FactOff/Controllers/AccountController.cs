@@ -10,20 +10,26 @@ using System.Collections.Generic;
 
 namespace FactOff.Controllers
 {
+    /// <summary>
+    /// Responsible for all views in the Account folder.
+    /// </summary>
     public class AccountController : Controller
     {
         /// <summary>
-        /// The service lets the AccountController communicate with the UsersService
-        /// which communicates with the database.
+        /// Allows communication with the <c>UsersService class</c>.
         /// </summary>
         private readonly IUsersService userService;
+        /// <summary>
+        /// Allows communication with the <c>FactsService class</c>.
+        /// </summary>
         private readonly IFactsService factsService;
 
         /// <summary>
         /// Initializes a new instance of the AccountController class.
         /// It's being called by the StartUp class.
         /// </summary>
-        /// <param name="userService">The required service for the class.</param>
+        /// <param name="userService">A required service for the class.</param>
+        /// <param name="factsService">A required service for the class.</param>
         public AccountController(IUsersService userService, IFactsService factsService)
         {
             this.userService = userService;
@@ -31,7 +37,8 @@ namespace FactOff.Controllers
         }
 
         /// <summary>
-        /// The action redirects to the Profile page in the Account folder.
+        /// The users profile page.
+        /// If the user is logged in an action redirects to the Profile page in the Account folder.
         /// </summary>
         /// <returns>Rendered view to the response.</returns>
         [FactOffAuthorize]
@@ -42,6 +49,11 @@ namespace FactOff.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// The page where the user can edit his info.
+        /// If the user is logged in an action redirects to the EditProfile page in the Account folder.
+        /// </summary>
+        /// <returns>Rendered view to the response.</returns>
         [FactOffAuthorize]
         public IActionResult EditProfile()
         {
@@ -54,6 +66,12 @@ namespace FactOff.Controllers
             return View(model);
         }
 
+
+        /// <summary>
+        /// Lets the user made changes happen.
+        /// If the user is logged in an action redirects to the EditProfile page in the Account folder.
+        /// </summary>
+        /// <returns>Rendered view to the response.</returns>
         [FactOffAuthorize]
         [HttpPost]
         public IActionResult EditProfile(AccountViewModel request)
@@ -73,6 +91,10 @@ namespace FactOff.Controllers
             return View(request);
         }
 
+        /// <summary>
+        /// Lets the user change his profile picture with one of his choice.
+        /// </summary>
+        /// <returns>Filetream with image info.</returns>
         [FactOffAuthorize]
         public FileStreamResult GetUserImage()
         {
@@ -82,7 +104,8 @@ namespace FactOff.Controllers
         }
 
         /// <summary>
-        /// The action redirects to the SavedPosted page in the Account folder.
+        /// Shows all saved posts by the user.
+        /// If logged in the action redirects to the SavedPosted page in the Account folder.
         /// </summary>
         /// <returns>Rendered view to the response.</returns>
         [FactOffAuthorize]
@@ -94,6 +117,7 @@ namespace FactOff.Controllers
         }
 
         /// <summary>
+        /// The sign in page.
         /// The action redirects to the SignIn page in the Account folder.
         /// </summary>
         /// <returns>Rendered view to the response.</returns>
@@ -131,6 +155,7 @@ namespace FactOff.Controllers
         }
 
         /// <summary>
+        /// Signs out of the account.
         /// The action redirects to the Index page in the Home folder.
         /// </summary>
         /// <returns>Rendered view to the response.</returns>
@@ -142,6 +167,7 @@ namespace FactOff.Controllers
         }
 
         /// <summary>
+        /// Allows for new users to register.
         /// The action redirects to the Registration page in the Account folder.
         /// </summary>
         /// <returns>Rendered view to the response.</returns>
