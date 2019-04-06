@@ -34,12 +34,16 @@ namespace Tests
             Tag tag = new Tag();
             tag.TagId = Guid.NewGuid();
             Guid tagId = tag.TagId;
-            User Creator = new User();
+            User creator = new User();
+            Theme theme = new Theme(){
+                Name = "Test theme"
+            };
 
-            factsService.CreateFact(factContext, Creator);
+            factsService.CreateFact(factContext, creator, theme.Name);
             factsService.AddTag(fact, tag);
 
             Assert.AreEqual(fact.Tags.First().TagId, tagId, "TagId of added tag is not the one it should be.");
+            mockSet.
         }
 
         [Test]
@@ -57,9 +61,13 @@ namespace Tests
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
             string factContext = "This is a fact.";
-            User Creator = new User();
+            User creator = new User();
+            Theme theme = new Theme()
+            {
+                Name = "Test theme"
+            };
 
-            factsService.CreateFact(factContext, Creator);
+            factsService.CreateFact(factContext, creator, theme.Name);
 
             Assert.AreEqual(mockContext.Facts.First().Context, factContext, "Fact not Created.");
         }
@@ -79,9 +87,13 @@ namespace Tests
             var mockContext = new FactOffContext(optionsBuilder.Options);
             var factsService = new FactsService(mockContext);
             string factContext = "This is a fact.";
-            User Creator = new User();
+            User creator = new User();
+            Theme theme = new Theme()
+            {
+                Name = "Test theme"
+            };
 
-            factsService.CreateFact(factContext, Creator);
+            factsService.CreateFact(factContext, creator, theme.Name);
             factsService.DeleteFact(mockContext.Facts.First());
 
             Assert.IsEmpty(mockContext.Facts);
@@ -104,11 +116,15 @@ namespace Tests
             string factContext1 = "First fact.";
             string factContext2 = "Second fact.";
             string factContext3 = "Third fact.";
-            User Creator = new User();
+            User creator = new User();
+            Theme theme = new Theme()
+            {
+                Name = "Test theme"
+            };
 
-            factsService.CreateFact(factContext1, Creator);
-            factsService.CreateFact(factContext2, Creator);
-            factsService.CreateFact(factContext3, Creator);
+            factsService.CreateFact(factContext1, creator, theme.Name);
+            factsService.CreateFact(factContext2, creator, theme.Name);
+            factsService.CreateFact(factContext3, creator, theme.Name);
             var model = factsService.GetAllFacts();
 
             Assert.AreEqual(model.Facts.Skip(2).First().Context, factContext3, "Context of third fact is not what it should be.");
@@ -133,9 +149,13 @@ namespace Tests
             Tag tag = new Tag();
             tag.TagId = Guid.NewGuid();
             Guid tagId = tag.TagId;
-            User Creator = new User();
+            User creator = new User();
+            Theme theme = new Theme()
+            {
+                Name = "Test theme"
+            };
 
-            factsService.CreateFact(fact.Context, Creator);
+            factsService.CreateFact(fact.Context, creator, theme.Name);
             factsService.AddTag(fact, tag);
 
             Assert.IsNull(factsService.GetFactById(tagId));
@@ -161,9 +181,13 @@ namespace Tests
             Tag tag = new Tag();
             tag.Name = "Test";
             tag.TagId = Guid.NewGuid();
-            User Creator = new User();
+            User creator = new User();
+            Theme theme = new Theme()
+            {
+                Name = "Test theme"
+            };
 
-            factsService.CreateFact(fact.Context, Creator);
+            factsService.CreateFact(fact.Context, creator, theme.Name);
             factsService.AddTag(fact, tag);
             if (mockContext.Facts.First() == fact)
             {
@@ -190,9 +214,13 @@ namespace Tests
             var factsService = new FactsService(mockContext);
             var factContext = "This is a fact.";
             var updatedContext = "This is an updated fact.";
-            User Creator = new User();
+            User creator = new User();
+            Theme theme = new Theme()
+            {
+                Name = "Test theme"
+            };
 
-            factsService.CreateFact(factContext, Creator);
+            factsService.CreateFact(factContext, creator, theme.Name);
             factsService.UpdateFact(mockContext.Facts.First(), updatedContext);
 
             Assert.AreEqual(mockContext.Facts.First().Context, updatedContext, "Context is not updated.");
